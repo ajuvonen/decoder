@@ -8,7 +8,7 @@ export const Home = () => {
     <>
       <h1 className="mt-5">Welcome</h1>
       <p className="mt-3">
-        Mastermind is a classic game of deduction where you try to guess the
+        Decoder (aka Mastermind, aka Code breaker) is a classic game of deduction where you try to guess the
         correct hidden color combination. Choose your colors, then observe the
         hint given. The green number represents the number of colors that were on
         their right place, whereas the orange number represents correct colors in

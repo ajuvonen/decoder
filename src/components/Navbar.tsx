@@ -16,7 +16,7 @@ export const Navbar = () => {
       <Container fluid="lg">
         <NavbarBS.Brand>
           <Nav.Link to="/" as={NavLink}>
-            Mastermind
+            Decoder
           </Nav.Link>
         </NavbarBS.Brand>
           {!!currentPath && (

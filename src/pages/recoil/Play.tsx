@@ -39,7 +39,7 @@ export default function Play() {
 
   return (
     <>
-      <h1 className="mt-5">Become a Mastermind</h1>
+      <h1 className="mt-5">Become a Decoder</h1>
       <DropdownButton className="mt-3" title="Create Game">
         <Dropdown.Item onClick={() => confirmCreateGame(false)}>
           Easy (five colors)
@@ -55,7 +55,7 @@ export default function Play() {
           instructionShown: true,
         }))}
       >
-        Welcome to Mastermind! To begin, choose the difficulty with the "Create Game" dropdown.
+        Welcome to Decoder! To begin, choose the difficulty with the "Create Game" dropdown.
         Your difficulty setting will affect the number of tries you have.
       </InfoModal>
       <GameBoard />
