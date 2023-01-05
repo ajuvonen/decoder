@@ -21,16 +21,14 @@ export const GameBoard = () => {
       const lost = currentGame.guesses.length === currentGame.maxGuesses;
       if (won) {
         setStats((currentStats) => {
-          const clearTime = Math.ceil(
-            (Date.now() - currentGame.started) / 1000
-          );
+          const clearTime = Math.ceil((Date.now() - currentGame.started) / 1000);
+          const fastest = currentStats.fastest ? Math.min(clearTime, currentStats.fastest) : clearTime;
+          const fastestHardmode = currentStats.fastestHardmode ? Math.min(clearTime, currentStats.fastestHardmode) : clearTime;
           return {
             ...currentStats,
             won: currentStats.won + 1,
-            fastest:
-              currentStats.fastest && currentStats.fastest < clearTime
-                ? currentStats.fastest
-                : clearTime,
+            ...(!currentGame.hardMode && {fastest}),
+            ...(currentGame.hardMode && {fastestHardmode}), 
           };
         });
         setModalMsg(

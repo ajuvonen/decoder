@@ -22,7 +22,7 @@ export const GameBoard = () => {
       const lost = currentGame.guesses.length === currentGame.maxGuesses;
       if (won) {
         const clearTime = Math.ceil((Date.now() - currentGame.started) / 1000);
-        dispatch(incrementWon(clearTime));
+        dispatch(incrementWon({clearTime, hardMode: currentGame.hardMode}));
         setModalMsg(
           'Congratulations! You won the game! Start a new game from the dropdown menu.'
         );
