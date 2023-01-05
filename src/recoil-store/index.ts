@@ -6,6 +6,7 @@ type Stats = {
   won: number;
   lost: number;
   fastest: number;
+  fastestHardmode: number;
 };
 
 type Settings = {
@@ -33,6 +34,7 @@ export const statsState = atom<Stats>({
     won: 0,
     lost: 0,
     fastest: 0,
+    fastestHardmode: 0,
   },
   effects: [localStorageEffect('STATS')],
 });
