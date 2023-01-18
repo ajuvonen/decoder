@@ -9,7 +9,7 @@ import { Color, Game, Result } from '../types';
 export const createGame = (hardMode: boolean, started: number): Game => {
   const colorsArrayLimit = hardMode ? 6 : 4;
   const combination = Array.from(Array(4)).map(() => {
-    return Object.values(Color)[Math.floor(Math.random() * colorsArrayLimit)];
+    return Object.values(Color)[Math.floor(Math.random() * (colorsArrayLimit + 1))];
   });
   return {
     active: true,
