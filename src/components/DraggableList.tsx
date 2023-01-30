@@ -1,13 +1,13 @@
+import { ComponentType, useRef } from 'react';
 import {move} from 'ramda';
 import Stack from 'react-bootstrap/Stack';
 import { Color, ColorButtonProps } from '@/types';
-import { ComponentType, useRef } from 'react';
+import { useWindowSize } from '@/hooks/windowSize';
 
 type DraggableListProps = {
   list: Color[];
   setList: React.Dispatch<React.SetStateAction<Color[]>>;
   ButtonComponent: ComponentType<ColorButtonProps>;
-  vertical: boolean;
   disabled: boolean;
 };
 
@@ -15,11 +15,11 @@ export const DraggableList = ({
   list,
   setList,
   ButtonComponent,
-  vertical,
   disabled,
 }: DraggableListProps) => {
   const dragIndex = useRef(0);
   const dragOverIndex = useRef(0);
+  const vertical = useWindowSize().width < 1000;
 
   const handleChangeColor = (index: number) => (color: Color) => {
     setList((current) => [

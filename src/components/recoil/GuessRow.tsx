@@ -12,16 +12,14 @@ import { ColorButton } from './ColorButton';
 type GuessRowProps = {
   guess: Guess;
   disabled: boolean;
-  vertical: boolean,
 };
 
 const defaultProps: GuessRowProps = {
   guess: {} as Guess,
   disabled: false,
-  vertical: false,
 };
 
-const GuessRow = ({ guess, disabled, vertical }: GuessRowProps) => {
+const GuessRow = ({ guess, disabled }: GuessRowProps) => {
   const [currentGame, setCurrentGame] = useRecoilState(currentGameState);
   const [activeGuess, setActiveGuess] = useState<Color[]>(
     disabled ? guess.combination : new Array(4).fill(null)
@@ -45,7 +43,7 @@ const GuessRow = ({ guess, disabled, vertical }: GuessRowProps) => {
 
   return (
     <Stack direction="horizontal" className="justify-content-center" gap={3}>
-      <DraggableList list={activeGuess} setList={setActiveGuess} vertical={vertical} disabled={disabled} ButtonComponent={ColorButton}/>
+      <DraggableList list={activeGuess} setList={setActiveGuess} disabled={disabled} ButtonComponent={ColorButton}/>
       {disabled ? (
         <GuessResult maxGuesses={currentGame.maxGuesses} guess={guess} />
       ) : (
