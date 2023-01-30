@@ -62,13 +62,9 @@ export const GameBoard = () => {
 
   return (
     <div className="mt-4 mb-5 w-100">
-      {currentGame.active &&
-        currentGame.guesses.length < currentGame.maxGuesses && (
-          <GuessRow/>
-        )}
-      <InfoModal show={showModal} onCloseModal={() => setShowModal(false)}>
-        {modalMsg}
-      </InfoModal>
+      {currentGame.active && currentGame.guesses.length < currentGame.maxGuesses && (
+        <GuessRow/>
+      )}
       {currentGame.guesses.map((guess) => (
         <GuessRow
           key={guess.round}
@@ -76,6 +72,9 @@ export const GameBoard = () => {
           disabled
         />
       ))}
+      <InfoModal show={showModal} onCloseModal={() => setShowModal(false)}>
+        {modalMsg}
+      </InfoModal>
     </div>
   );
 };
