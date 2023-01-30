@@ -4,9 +4,10 @@ import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
 import { Color, Guess } from '@/types';
 import { currentGameState } from '@/recoil-store';
-import { ColorButton } from './ColorButton';
 import { GuessResult } from '@/components/GuessResult';
 import { getResult } from '@/utils/gameUtils';
+import { DraggableList } from '@/components/DraggableList';
+import { ColorButton } from './ColorButton';
 
 type GuessRowProps = {
   guess: Guess;
@@ -22,17 +23,9 @@ const defaultProps: GuessRowProps = {
 
 const GuessRow = ({ guess, disabled, vertical }: GuessRowProps) => {
   const [currentGame, setCurrentGame] = useRecoilState(currentGameState);
-  const [activeGuess, setActiveGuess] = useState(
+  const [activeGuess, setActiveGuess] = useState<Color[]>(
     disabled ? guess.combination : new Array(4).fill(null)
   );
-
-  const handleChangeColor = (index: number) => (color: Color) => {
-    setActiveGuess((current) => [
-      ...current.slice(0, index),
-      color,
-      ...current.slice(index + 1),
-    ]);
-  };
 
   const handleGuess = () => {
     setCurrentGame((current) => {
@@ -52,20 +45,7 @@ const GuessRow = ({ guess, disabled, vertical }: GuessRowProps) => {
 
   return (
     <Stack direction="horizontal" className="justify-content-center" gap={3}>
-      <Stack
-        direction={vertical ? 'vertical' : 'horizontal'}
-        gap={vertical ? 1 : 3}
-        className="mt-3 justify-content-center"
-      >
-        {activeGuess.map((color, index) => (
-          <ColorButton
-            key={index}
-            color={color}
-            disabled={disabled}
-            onChangeColor={handleChangeColor(index)}
-          />
-        ))}
-      </Stack>
+      <DraggableList list={activeGuess} setList={setActiveGuess} vertical={vertical} disabled={disabled} ButtonComponent={ColorButton}/>
       {disabled ? (
         <GuessResult maxGuesses={currentGame.maxGuesses} guess={guess} />
       ) : (
