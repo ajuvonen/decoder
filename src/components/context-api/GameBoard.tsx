@@ -3,13 +3,11 @@ import { useGameContext } from '@/context/GameContext';
 import { Color } from '@/types';
 import { GuessRow } from '@/components/context-api/GuessRow';
 import { InfoModal } from '@/components/InfoModal';
-import { useWindowSize } from '@/hooks/windowSize';
 
 export const GameBoard = () => {
   const { currentGame, setCurrentGame, setStats } = useGameContext();
   const [showModal, setShowModal] = useState(false);
   const [modalMsg, setModalMsg] = useState('');
-  const vertical = useWindowSize().width < 1000;
 
   useEffect(() => {
     if (currentGame.active) {
@@ -66,7 +64,7 @@ export const GameBoard = () => {
     <div className="mt-4 mb-5 w-100">
       {currentGame.active &&
         currentGame.guesses.length < currentGame.maxGuesses && (
-          <GuessRow vertical={vertical} />
+          <GuessRow/>
         )}
       <InfoModal show={showModal} onCloseModal={() => setShowModal(false)}>
         {modalMsg}
@@ -76,7 +74,6 @@ export const GameBoard = () => {
           key={guess.round}
           guess={guess}
           disabled
-          vertical={vertical}
         />
       ))}
     </div>
