@@ -13,11 +13,6 @@ type GuessRowProps = {
   disabled: boolean;
 };
 
-const defaultProps: GuessRowProps = {
-  guess: {} as Guess,
-  disabled: false,
-};
-
 const GuessRow = ({ guess, disabled }: GuessRowProps) => {
   const currentGame = useSelector((state) => state.currentGame);
   const dispatch = useDispatch();
@@ -54,6 +49,9 @@ const GuessRow = ({ guess, disabled }: GuessRowProps) => {
   );
 };
 
-GuessRow.defaultProps = defaultProps;
+GuessRow.defaultProps = {
+  guess: {} as Guess,
+  disabled: false,
+};
 
 export { GuessRow };
