@@ -36,7 +36,7 @@ export default function Play() {
 
   return (
     <>
-      <h1 className="mt-5">Become a Master Decoder</h1>
+      <h1 className="mt-5">Become a Decoder</h1>
       <DropdownButton className="mt-3" title="Create Game">
         <Dropdown.Item onClick={() => confirmCreateGame(false)}>
           Easy (five colors)
