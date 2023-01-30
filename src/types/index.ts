@@ -18,6 +18,12 @@ export type Result = {
   semiCorrect: number;
 };
 
+export type ColorButtonProps = {
+  color: Color,
+  disabled: boolean,
+  onChangeColor: (color: Color) => void,
+};
+
 export enum Color {
   Red = '#ee4035',
   Orange = '#f37021',
