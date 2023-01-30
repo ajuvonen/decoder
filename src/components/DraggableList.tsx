@@ -1,5 +1,5 @@
 import { ComponentType, useRef } from 'react';
-import {move} from 'ramda';
+import { move } from 'ramda';
 import Stack from 'react-bootstrap/Stack';
 import { Color, ColorButtonProps } from '@/types';
 import { useWindowSize } from '@/hooks/windowSize';
@@ -35,9 +35,9 @@ export const DraggableList = ({
   };
 
   const handleDragEnter = (index: number) => (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    dragOverIndex.current = index
-  };
+      e.preventDefault();
+      dragOverIndex.current = index;
+    };
 
   const handleDragEnd = () => {
     if (dragIndex.current != dragOverIndex.current) {
@@ -57,7 +57,8 @@ export const DraggableList = ({
           onDragStart={() => handleDragStart(index)}
           onDragEnter={handleDragEnter(index)}
           onDragEnd={handleDragEnd}
-          draggable={!disabled}>
+          draggable={!disabled}
+        >
           <ButtonComponent
             color={color}
             disabled={disabled}

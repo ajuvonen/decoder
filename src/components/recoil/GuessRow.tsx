@@ -43,7 +43,12 @@ const GuessRow = ({ guess, disabled }: GuessRowProps) => {
 
   return (
     <Stack direction="horizontal" className="justify-content-center" gap={3}>
-      <DraggableList list={activeGuess} setList={setActiveGuess} disabled={disabled} ButtonComponent={ColorButton}/>
+      <DraggableList
+        list={activeGuess}
+        setList={setActiveGuess}
+        disabled={disabled}
+        ButtonComponent={ColorButton}
+      />
       {disabled ? (
         <GuessResult maxGuesses={currentGame.maxGuesses} guess={guess} />
       ) : (
