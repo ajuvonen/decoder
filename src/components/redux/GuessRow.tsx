@@ -1,17 +1,12 @@
 import { useState } from 'react';
 import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
-import { Color, Guess } from '@/types';
+import { Color, Guess, GuessRowProps } from '@/types';
 import { GuessResult } from '@/components/GuessResult';
 import { addGuess } from '@/redux-store/gameSlice';
 import { useDispatch, useSelector } from '@/hooks/reduxHooks';
 import { DraggableList } from '@/components/DraggableList';
 import { ColorButton } from './ColorButton';
-
-type GuessRowProps = {
-  guess: Guess;
-  disabled: boolean;
-};
 
 const GuessRow = ({ guess, disabled }: GuessRowProps) => {
   const currentGame = useSelector((state) => state.currentGame);

@@ -24,6 +24,11 @@ export type ColorButtonProps = {
   onChangeColor: (color: Color) => void,
 };
 
+export type GuessRowProps = {
+  guess: Guess;
+  disabled: boolean;
+};
+
 export enum Color {
   Red = '#ee4035',
   Orange = '#f37021',

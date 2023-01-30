@@ -3,15 +3,10 @@ import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
 import { useGameContext } from '@/context/GameContext';
 import { GuessResult } from '@/components/GuessResult';
-import { Color, Guess } from '@/types';
+import { Color, Guess, GuessRowProps } from '@/types';
 import { getResult } from '@/utils/gameUtils';
 import { DraggableList } from '@/components/DraggableList';
 import { ColorButton } from './ColorButton';
-
-type GuessRowProps = {
-  guess: Guess;
-  disabled: boolean;
-};
 
 const GuessRow = ({ guess, disabled }: GuessRowProps) => {
   const { currentGame, setCurrentGame } = useGameContext();

@@ -2,17 +2,12 @@ import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
-import { Color, Guess } from '@/types';
+import { Color, Guess, GuessRowProps } from '@/types';
 import { currentGameState } from '@/recoil-store';
 import { GuessResult } from '@/components/GuessResult';
 import { getResult } from '@/utils/gameUtils';
 import { DraggableList } from '@/components/DraggableList';
 import { ColorButton } from './ColorButton';
-
-type GuessRowProps = {
-  guess: Guess;
-  disabled: boolean;
-};
 
 const GuessRow = ({ guess, disabled }: GuessRowProps) => {
   const [currentGame, setCurrentGame] = useRecoilState(currentGameState);
