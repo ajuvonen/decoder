@@ -1,12 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { loadLocalStorage } from '@/utils/reduxUtils';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { loadLocalStorage } from '@/utils/localStorageUtils';
 
 type Settings = {
   instructionShown: boolean;
+  refreshRequired: boolean;
 };
 
 const initialState = loadLocalStorage<Settings>('SETTINGS', {
   instructionShown: false,
+  refreshRequired: false,
 });
 
 const settingsSlice = createSlice({
@@ -16,9 +18,12 @@ const settingsSlice = createSlice({
     setInstructionShown: (state) => {
       state.instructionShown = true;
     },
+    setRefreshRequired: (state, {payload}: PayloadAction<boolean>) => {
+      state.refreshRequired = payload;
+    },
   },
 });
 
-export const { setInstructionShown } = settingsSlice.actions;
+export const { setInstructionShown, setRefreshRequired } = settingsSlice.actions;
 
 export const settingsReducer = settingsSlice.reducer;

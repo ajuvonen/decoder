@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import { Navbar } from '@/components/Navbar';
 import { Home } from '@/pages/Home';
@@ -16,7 +16,7 @@ export const ContextStats = React.lazy(() => import('./pages/context-api/Stats')
 
 export const App = () => {
   return (
-    <>
+    <BrowserRouter>
       <Navbar />
       <Container className="d-flex flex-column align-items-center">
         <Suspense fallback="Loading">
@@ -37,6 +37,6 @@ export const App = () => {
           </Routes>
         </Suspense>
       </Container>
-    </>
+    </BrowserRouter>
   );
 };

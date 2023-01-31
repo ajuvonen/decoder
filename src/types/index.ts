@@ -29,6 +29,13 @@ export type GuessRowProps = {
   disabled: boolean;
 };
 
+export type Stats = {
+  won: number;
+  lost: number;
+  fastest: number;
+  fastestHardmode: number;
+};
+
 export enum Color {
   Red = '#ee4035',
   Orange = '#f37021',
