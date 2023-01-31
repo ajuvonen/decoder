@@ -1,12 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { loadLocalStorage } from '@/utils/reduxUtils';
-
-type Stats = {
-  won: number;
-  lost: number;
-  fastest: number;
-  fastestHardmode: number;
-};
+import { loadLocalStorage } from '@/utils/localStorageUtils';
+import { Stats } from '@/types';
 
 type FastestTimePayload = {
   clearTime: number;
@@ -37,9 +31,12 @@ const statsSlice = createSlice({
     incrementLost: (state) => {
       state.lost = state.lost + 1;
     },
+    refreshStatsState: (state, {payload}: PayloadAction<Stats>) => {
+      return payload;
+    },
   },
 });
 
-export const { incrementLost, incrementWon } = statsSlice.actions;
+export const { incrementLost, incrementWon, refreshStatsState } = statsSlice.actions;
 
 export const statsReducer = statsSlice.reducer;
