@@ -1,4 +1,4 @@
-import i18n from '@/i18n';
+import { useEffect } from 'react';
 import { Globe } from 'react-bootstrap-icons';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
@@ -14,14 +14,18 @@ const LanguageButton = styled.a`
 `;
 
 export const LanguageSelector = () => {
-  const { i18n, t } = useTranslation();
+  const { i18n } = useTranslation();
   const languages = ['en', 'fi'];
   const setLanguage = (language: string) => {
     i18n.changeLanguage(language);
+    document.documentElement.lang = i18n.language;
   };
+  useEffect(() => {
+    document.documentElement.lang = i18n.language;
+  }, []);
   return (
     <div className="d-flex align-items-center pt-2 pb-2">
-      <Globe aria-hidden/>
+      <Globe aria-hidden />
       {languages.map((language) => (
         <LanguageButton
           key={language}
