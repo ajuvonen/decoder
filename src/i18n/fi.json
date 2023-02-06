@@ -1,0 +1,55 @@
+{
+  "general": {
+    "cancel": "Peruuta",
+    "choose": "Valitse",
+    "colors": {
+      "Red": "Punainen",
+      "Orange": "Oranssi",
+      "Yellow": "Keltainen",
+      "Green": "Vihreä",
+      "Blue": "Sininen",
+      "Black": "Musta",
+      "Purple": "Violetti"
+    },
+    "continue": "Jatka",
+    "localeName": "Suomi"
+  },
+  "gameBoard": {
+    "congratulations": "Onnittelut! Voitit pelin! Aloita uusi peli pudotusvalikosta.",
+    "gameOver": "Et onnistunut arvaamaan oikeaa yhdistelmää, joka oli: {{combinationText}}. Aloita uusi peli pudotusvalikosta."
+  },
+  "guessResult": {
+    "correct": "Oikea väri ja sijainti",
+    "info": "Kierros {{round}} / {{maxGuesses}}",
+    "semiCorrect": "Oikea väri, väärä sijainti"
+  },
+  "guessRow": {
+    "check"  : "Tarkista"
+  },
+  "home": {
+    "instruction1": "Decoder, kauppanimeltään Mastermind tai Codebreaker, on klassinen päättelypeli jossa pelaaja yrittää arvata piilotetun väriyhdistelmän. Valitse värit ja tutki saamaasi vihjettä. Vihreä numero esittää sellaisten värien lukumäärää, jossa sekä väri että sijainti oli oikein. Oranssi väri ilmaisee sellaisten värien lukumäärän, jotka ovat väärässä paikassa.",
+    "instruction2": "Pelissä on kaksi vaikeusastetta, yksi viidellä värillä ja toinen seitsemällä. Helpommassa versiossa sinulla on kymmenen arvausta, vaikeammassa 12.",
+    "instruction3": "Tämä harjoitusprojekti sisältää monta versiota samasta pelistä. Kaikkien versioiden pitäisi näyttää sekä toimia identtisesti. Jatka painamalla haluamastasi painikkeesta:",
+    "welcome": "Tervetuloa"
+  },
+  "navbar": {
+    "play": "Pelaa",
+    "stats": "Tilastot"
+  },
+  "play": {
+    "difficultMode": "Vaikea (seitsemän väriä)",
+    "easyMode": "Helppo (viisi väriä)",
+    "createGame": "Aloita Peli",
+    "infoModal": "Tervetuloa pelaamaan Decoderia! Aloittaaksesi, valitse vaikeustaso \"Aloita Peli\"-valikosta. Valittu vaikeusaste vaikuttaa käytössä olevien värien ja yritysten määrään.",
+    "newGameConfirmationTitle": "Oletko varma?",
+    "newGameConfirmationContent": "Uuden pelin aloittaminen päättää nykyisen pelin. Tämä näkyy tappiona tilastoissasi.",
+    "title": "Decoder"
+  },
+  "stats": {
+    "fastestTimeDifficult": "Nopein aika (vaikea): {{time}}",
+    "fastestTimeEasy": "Nopein aika (helppo): {{time}}",
+    "lostGames": "Hävityt pelit: {{lost}}",
+    "title": "Tilastot",
+    "wonGames": "Voitetut pelit: {{won}} ({{percentage}} %)"
+  }
+}

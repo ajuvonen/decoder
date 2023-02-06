@@ -1,0 +1,55 @@
+{
+  "general": {
+    "cancel": "Cancel",
+    "choose": "Choose",
+    "colors": {
+      "Red": "Red",
+      "Orange": "Orange",
+      "Yellow": "Yellow",
+      "Green": "Green",
+      "Blue": "Blue",
+      "Black": "Black",
+      "Purple": "Purple"
+    },
+    "continue": "Continue",
+    "localeName": "English"
+  },
+  "gameBoard": {
+    "congratulations": "Congratulations! You won the game! Start a new game from the dropdown menu.",
+    "gameOver": "You failed to guess the correct combination, which was: {{combinationText}}. Start a new game from the dropdown menu."
+  },
+  "guessResult": {
+    "correct": "Correct color and slot",
+    "info": "Round {{round}} / {{maxGuesses}}",
+    "semiCorrect": "Correct color, wrong slot"
+  },
+  "guessRow": {
+    "check"  : "Check"
+  },
+  "home": {
+    "instruction1": "Decoder (aka Mastermind, aka Code breaker) is a classic game of deduction where you try to guess the correct hidden color combination. Choose your colors, then observe the hint given. The green number represents the number of colors that were on their right place, whereas the orange number represents correct colors in the wrong slot.",
+    "instruction2": "There are two difficulties of the game; one with five color options and another with seven. For the easier mode, you have ten guesses to figure out the correct combination. For the more difficult version, you have 12.",
+    "instruction3": "This exercise contains multiple versions of the same game. All versions should look and work identical. Please click on a button to proceed:",
+    "welcome": "Welcome"
+  },
+  "navbar": {
+    "play": "Play",
+    "stats": "Stats"
+  },
+  "play": {
+    "difficultMode": "Difficult (seven colors)",
+    "easyMode": "Easy (five colors)",
+    "createGame": "Create Game",
+    "infoModal": "Welcome to Decoder! To begin, choose the difficulty with the \"Create Game\" dropdown. Your difficulty setting will affect the number of tries you have.",
+    "newGameConfirmationTitle": "Are you sure?",
+    "newGameConfirmationContent": "Creating a new game will end the current one. This will count as a loss in your stats.",
+    "title": "Decoder"
+  },
+  "stats": {
+    "fastestTimeDifficult": "Fastest time (difficult): {{time}}",
+    "fastestTimeEasy": "Fastest time (easy): {{time}}",
+    "lostGames": "Lost games: {{lost}}",
+    "title": "Stats",
+    "wonGames": "Won games: {{won}} ({{percentage}} %)"
+  }
+}
