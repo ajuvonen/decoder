@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
 import { Color, Guess, GuessRowProps } from '@/types';
@@ -11,6 +12,7 @@ import { ColorButton } from './ColorButton';
 const GuessRow = ({ guess, disabled }: GuessRowProps) => {
   const currentGame = useSelector((state) => state.currentGame);
   const dispatch = useDispatch();
+  const {t} = useTranslation();
   const [activeGuess, setActiveGuess] = useState<Color[]>(
     disabled ? guess.combination : new Array(4).fill(null)
   );
@@ -37,7 +39,7 @@ const GuessRow = ({ guess, disabled }: GuessRowProps) => {
           }}
           onClick={() => dispatch(addGuess(activeGuess))}
         >
-          Check
+          { t('guessRow.check') }
         </Button>
       )}
     </Stack>

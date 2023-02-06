@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled, { keyframes } from 'styled-components';
 import { Guess } from '@/types';
 
@@ -7,8 +8,7 @@ type GuessResultProps = {
 };
 
 type ResultBlockProps = {
-  round: number;
-  maxGuesses: number;
+  info: string,
 };
 
 const rotate = keyframes`
@@ -43,7 +43,7 @@ const ResultBlock = styled('div')`
   }
 
   :after {
-    content: 'Round ${(props: ResultBlockProps) => props.round + '/' + props.maxGuesses}';
+    content: '${(props: ResultBlockProps) => props.info}';
     font-size: 1rem;
     position: absolute;
     top: 0;
@@ -73,10 +73,11 @@ const ResultBlock = styled('div')`
 `;
 
 export const GuessResult = ({ guess, maxGuesses }: GuessResultProps) => {
+  const {t} = useTranslation();
   return (
-    <ResultBlock round={guess.round} maxGuesses={maxGuesses} className={`${guess.result.correct === 4 ? 'win' : ''}`}>
-      <span title="Correct color and slot">{guess.result.correct}</span>
-      <span title="Correct color, wrong slot">{guess.result.semiCorrect}</span>
+    <ResultBlock info={ t('guessResult.info', {round: guess.round, maxGuesses})} className={`${guess.result.correct === 4 ? 'win' : ''}`}>
+      <span title={ t('guessResult.correct') }>{guess.result.correct}</span>
+      <span title={ t('guessResult.semiCorrect') }>{guess.result.semiCorrect}</span>
     </ResultBlock>
   );
 };

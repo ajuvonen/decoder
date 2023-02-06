@@ -1,10 +1,13 @@
+import { useTranslation } from 'react-i18next';
 import { useGameContext } from '@/context/GameContext';
 
 export default function Stats() {
-  const {stats} = useGameContext();
-  const percentage = stats.won + stats.lost
-    ? ((stats.won / (stats.won + stats.lost)) * 100).toFixed(1)
-    : '0';
+  const { stats } = useGameContext();
+  const { t } = useTranslation();
+  const percentage =
+    stats.won + stats.lost
+      ? ((stats.won / (stats.won + stats.lost)) * 100).toFixed(1)
+      : '0';
 
   const getFastestTime = (totalSeconds: number) => {
     const minutes = Math.floor(totalSeconds / 60);
@@ -14,17 +17,23 @@ export default function Stats() {
 
   return (
     <>
-      <h1 className="mt-5">Stats</h1>
+      <h1 className="mt-5">{t('stats.title')}</h1>
       <p className="mt-3 fs-3">
-        Won games: {stats.won} ({percentage}%)
+        {t('stats.wonGames', { won: stats.won, percentage })}
       </p>
-      <p className="fs-3">Lost games: {stats.lost}</p>
+      <p className="fs-3">{t('stats.lostGames', { lost: stats.lost })}</p>
       {!!stats.fastest && (
-        <p className="fs-3">Fastest time (easy difficulty): {getFastestTime(stats.fastest)}</p>
+        <p className="fs-3">
+          {t('stats.fastestTimeEasy', { time: getFastestTime(stats.fastest) })}
+        </p>
       )}
       {!!stats.fastestHardmode && (
-        <p className="fs-3">Fastest time (hard difficulty): {getFastestTime(stats.fastestHardmode)}</p>
+        <p className="fs-3">
+          {t('stats.fastestTimeDifficult', {
+            time: getFastestTime(stats.fastestHardmode),
+          })}
+        </p>
       )}
     </>
   );
-};
+}

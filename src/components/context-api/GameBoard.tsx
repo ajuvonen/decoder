@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useGameContext } from '@/context/GameContext';
-import { Color } from '@/types';
 import { GuessRow } from '@/components/context-api/GuessRow';
 import { InfoModal } from '@/components/InfoModal';
+import { getColor } from '@/utils/gameUtils';
 
 export const GameBoard = () => {
   const { currentGame, setCurrentGame, setStats } = useGameContext();
   const [showModal, setShowModal] = useState(false);
   const [modalMsg, setModalMsg] = useState('');
+  const {t} = useTranslation();
 
   useEffect(() => {
     if (currentGame.active) {
@@ -27,22 +29,16 @@ export const GameBoard = () => {
             ...(currentGame.hardMode && {fastestHardmode}), 
           };
         });
-        setModalMsg(
-          'Congratulations! You won the game! Start a new game from the dropdown menu.'
-        );
+        setModalMsg(() => t('gameBoard.congratulations'));
       } else if (lost) {
         setStats((currentStats) => ({
           ...currentStats,
           lost: currentStats.lost + 1,
         }));
         const combinationText = currentGame.combination
-          .map(
-            (color) => Object.keys(Color)[Object.values(Color).indexOf(color)]
-          )
+          .map(getColor)
           .join(', ');
-        setModalMsg(
-          `You failed to guess the correct combination, which was: ${combinationText}. Start a new game from the dropdown menu.`
-        );
+        setModalMsg(() => t('gameBoard.gameOver', {combinationText}));
       }
 
       if (won || lost) {
