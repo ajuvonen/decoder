@@ -1,6 +1,6 @@
-import React, { createContext, ReactNode, useContext } from 'react';
-import { useLocalStorage } from '@/hooks/localStorage';
-import { Game } from '@/types';
+import React, {createContext, ReactNode, useContext} from 'react';
+import {useLocalStorage} from '@/hooks/localStorage';
+import {Game} from '@/types';
 
 type GameContextProps = {
   children: ReactNode;
@@ -30,7 +30,7 @@ const GameContext = createContext({} as GameContext);
 
 export const useGameContext = () => useContext(GameContext);
 
-export const GameProvider = ({ children }: GameContextProps) => {
+export const GameProvider = ({children}: GameContextProps) => {
   const [currentGame, setCurrentGame] = useLocalStorage<Game>('CURRENT_GAME', {
     active: false,
     hardMode: false,

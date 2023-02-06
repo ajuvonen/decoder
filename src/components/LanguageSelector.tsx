@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
-import { Globe } from 'react-bootstrap-icons';
-import { useTranslation } from 'react-i18next';
+import {useEffect} from 'react';
+import {Globe} from 'react-bootstrap-icons';
+import {useTranslation} from 'react-i18next';
 import styled from 'styled-components';
 
 const LanguageButton = styled.a`
@@ -14,7 +14,7 @@ const LanguageButton = styled.a`
 `;
 
 export const LanguageSelector = () => {
-  const { i18n } = useTranslation();
+  const {i18n} = useTranslation();
   const languages = ['en', 'fi'];
   const setLanguage = (language: string) => {
     i18n.changeLanguage(language);
@@ -32,7 +32,7 @@ export const LanguageSelector = () => {
           role="button"
           onClick={() => setLanguage(language)}
         >
-          {i18n.t('general.localeName', { lng: language })}
+          {i18n.t('general.localeName', {lng: language})}
         </LanguageButton>
       ))}
     </div>

@@ -1,8 +1,8 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Color, Game } from '@/types';
-import { getResult } from '@/utils/gameUtils';
-import { createGame } from '@/utils/gameUtils';
-import { loadLocalStorage } from '@/utils/localStorageUtils';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {Color, Game} from '@/types';
+import {getResult} from '@/utils/gameUtils';
+import {createGame} from '@/utils/gameUtils';
+import {loadLocalStorage} from '@/utils/localStorageUtils';
 
 type NewGameSettings = {
   hardMode: boolean;
@@ -22,9 +22,9 @@ const gameSlice = createSlice({
   name: 'currentGame',
   initialState,
   reducers: {
-    createNewGame: (state, { payload }: PayloadAction<NewGameSettings>) =>
+    createNewGame: (state, {payload}: PayloadAction<NewGameSettings>) =>
       createGame(payload.hardMode, payload.started),
-    addGuess: (state, { payload }: PayloadAction<Color[]>) => {
+    addGuess: (state, {payload}: PayloadAction<Color[]>) => {
       state.guesses.unshift({
         round: state.guesses.length + 1,
         combination: payload,
@@ -40,6 +40,7 @@ const gameSlice = createSlice({
   },
 });
 
-export const { addGuess, setInactive, createNewGame, refreshGameState } = gameSlice.actions;
+export const {addGuess, setInactive, createNewGame, refreshGameState} =
+  gameSlice.actions;
 
 export const gameReducer = gameSlice.reducer;

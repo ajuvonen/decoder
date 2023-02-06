@@ -1,16 +1,16 @@
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import {useState} from 'react';
+import {useTranslation} from 'react-i18next';
 import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
-import { useGameContext } from '@/context/GameContext';
-import { GuessResult } from '@/components/GuessResult';
-import { Color, Guess, GuessRowProps } from '@/types';
-import { getResult } from '@/utils/gameUtils';
-import { DraggableList } from '@/components/DraggableList';
-import { ColorButton } from './ColorButton';
+import {useGameContext} from '@/context/GameContext';
+import {GuessResult} from '@/components/GuessResult';
+import {Color, Guess, GuessRowProps} from '@/types';
+import {getResult} from '@/utils/gameUtils';
+import {DraggableList} from '@/components/DraggableList';
+import {ColorButton} from './ColorButton';
 
-const GuessRow = ({ guess, disabled }: GuessRowProps) => {
-  const { currentGame, setCurrentGame } = useGameContext();
+const GuessRow = ({guess, disabled}: GuessRowProps) => {
+  const {currentGame, setCurrentGame} = useGameContext();
   const {t} = useTranslation();
   const [activeGuess, setActiveGuess] = useState<Color[]>(
     disabled ? guess.combination : new Array(4).fill(null)
@@ -54,7 +54,7 @@ const GuessRow = ({ guess, disabled }: GuessRowProps) => {
           }}
           onClick={handleGuess}
         >
-          { t('guessRow.check') }
+          {t('guessRow.check')}
         </Button>
       )}
     </Stack>
@@ -66,4 +66,4 @@ GuessRow.defaultProps = {
   disabled: false,
 };
 
-export { GuessRow };
+export {GuessRow};

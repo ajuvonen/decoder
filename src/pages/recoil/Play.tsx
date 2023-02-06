@@ -1,14 +1,14 @@
-import { useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import {useRef, useState} from 'react';
+import {useTranslation} from 'react-i18next';
+import {useRecoilState, useSetRecoilState} from 'recoil';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import { createGame } from '@/utils/gameUtils';
-import { GameBoard } from '@/components/recoil/GameBoard';
-import { InfoModal } from '@/components/InfoModal';
-import { settingsState, currentGameState, statsState } from '@/recoil-store';
+import {createGame} from '@/utils/gameUtils';
+import {GameBoard} from '@/components/recoil/GameBoard';
+import {InfoModal} from '@/components/InfoModal';
+import {settingsState, currentGameState, statsState} from '@/recoil-store';
 
 export default function Play() {
   const [currentGame, setCurrentGame] = useRecoilState(currentGameState);

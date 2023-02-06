@@ -1,15 +1,15 @@
-import { useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import {useRef, useState} from 'react';
+import {useTranslation} from 'react-i18next';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import { GameBoard } from '@/components/redux/GameBoard';
-import { InfoModal } from '@/components/InfoModal';
-import { incrementLost } from '@/redux-store/statsSlice';
-import { createNewGame } from '@/redux-store/gameSlice';
-import { setInstructionShown } from '@/redux-store/settingsSlice';
-import { useDispatch, useSelector } from '@/hooks/reduxHooks';
+import {GameBoard} from '@/components/redux/GameBoard';
+import {InfoModal} from '@/components/InfoModal';
+import {incrementLost} from '@/redux-store/statsSlice';
+import {createNewGame} from '@/redux-store/gameSlice';
+import {setInstructionShown} from '@/redux-store/settingsSlice';
+import {useDispatch, useSelector} from '@/hooks/reduxHooks';
 
 export default function Play() {
   const currentGame = useSelector((state) => state.currentGame);
@@ -25,10 +25,12 @@ export default function Play() {
       dispatch(incrementLost());
     }
 
-    dispatch(createNewGame({
-      hardMode: newGameHardMode.current,
-      started: Date.now(),
-    }));
+    dispatch(
+      createNewGame({
+        hardMode: newGameHardMode.current,
+        started: Date.now(),
+      })
+    );
   };
 
   const confirmCreateGame = (hardMode: boolean) => {
@@ -77,4 +79,4 @@ export default function Play() {
       </Modal>
     </>
   );
-};
+}

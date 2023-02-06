@@ -1,15 +1,15 @@
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import {useState} from 'react';
+import {useTranslation} from 'react-i18next';
 import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
-import { Color, Guess, GuessRowProps } from '@/types';
-import { GuessResult } from '@/components/GuessResult';
-import { addGuess } from '@/redux-store/gameSlice';
-import { useDispatch, useSelector } from '@/hooks/reduxHooks';
-import { DraggableList } from '@/components/DraggableList';
-import { ColorButton } from './ColorButton';
+import {Color, Guess, GuessRowProps} from '@/types';
+import {GuessResult} from '@/components/GuessResult';
+import {addGuess} from '@/redux-store/gameSlice';
+import {useDispatch, useSelector} from '@/hooks/reduxHooks';
+import {DraggableList} from '@/components/DraggableList';
+import {ColorButton} from './ColorButton';
 
-const GuessRow = ({ guess, disabled }: GuessRowProps) => {
+const GuessRow = ({guess, disabled}: GuessRowProps) => {
   const currentGame = useSelector((state) => state.currentGame);
   const dispatch = useDispatch();
   const {t} = useTranslation();
@@ -41,7 +41,7 @@ const GuessRow = ({ guess, disabled }: GuessRowProps) => {
           }}
           onClick={handleGuess}
         >
-          { t('guessRow.check') }
+          {t('guessRow.check')}
         </Button>
       )}
     </Stack>
@@ -53,4 +53,4 @@ GuessRow.defaultProps = {
   disabled: false,
 };
 
-export { GuessRow };
+export {GuessRow};

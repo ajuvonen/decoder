@@ -1,6 +1,6 @@
-import { atom } from 'recoil';
-import { Game } from '@/types';
-import { localStorageEffect } from '@/utils/recoilUtils';
+import {atom} from 'recoil';
+import {Game} from '@/types';
+import {localStorageEffect} from '@/utils/recoilUtils';
 
 type Stats = {
   won: number;

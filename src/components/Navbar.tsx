@@ -1,11 +1,11 @@
-import { useTranslation } from 'react-i18next';
-import { NavLink, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import {useTranslation} from 'react-i18next';
+import {NavLink, useLocation} from 'react-router-dom';
+import {useState, useEffect} from 'react';
 import NavbarBS from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
-import { LanguageSelector } from './LanguageSelector';
-import { useWindowSize } from '@/hooks/windowSize';
+import {LanguageSelector} from './LanguageSelector';
+import {useWindowSize} from '@/hooks/windowSize';
 
 export const Navbar = () => {
   const location = useLocation();
@@ -35,12 +35,12 @@ export const Navbar = () => {
                 <Nav.Link to={`${currentPath}stats`} as={NavLink}>
                   {t('navbar.stats')}
                 </Nav.Link>
-                {hasMenu && <LanguageSelector/>}
+                {hasMenu && <LanguageSelector />}
               </Nav>
             </NavbarBS.Collapse>
           </>
         )}
-        {!hasMenu && <LanguageSelector/>}
+        {!hasMenu && <LanguageSelector />}
       </Container>
     </NavbarBS>
   );

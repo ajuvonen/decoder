@@ -1,20 +1,20 @@
-import { useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import {useRef, useState} from 'react';
+import {useTranslation} from 'react-i18next';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import { useGameContext } from '@/context/GameContext';
-import { createGame } from '@/utils/gameUtils';
-import { GameBoard } from '@/components/context-api/GameBoard';
-import { InfoModal } from '@/components/InfoModal';
+import {useGameContext} from '@/context/GameContext';
+import {createGame} from '@/utils/gameUtils';
+import {GameBoard} from '@/components/context-api/GameBoard';
+import {InfoModal} from '@/components/InfoModal';
 
 export default function Play() {
-  const { currentGame, setCurrentGame, setStats, settings, setSettings } =
+  const {currentGame, setCurrentGame, setStats, settings, setSettings} =
     useGameContext();
   const [showNewGameModal, setShowNewGameModal] = useState(false);
   const newGameHardMode = useRef(false);
-  const { t } = useTranslation();
+  const {t} = useTranslation();
 
   const handleCreateGame = () => {
     setShowNewGameModal(false);
