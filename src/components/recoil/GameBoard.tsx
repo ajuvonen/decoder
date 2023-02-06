@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { Color } from '@/types';
 import { currentGameState, statsState } from '@/recoil-store';
@@ -10,6 +11,7 @@ export const GameBoard = () => {
   const setStats = useSetRecoilState(statsState);
   const [showModal, setShowModal] = useState(false);
   const [modalMsg, setModalMsg] = useState('');
+  const {t} = useTranslation();
 
   useEffect(() => {
     if (currentGame.active) {
@@ -29,9 +31,7 @@ export const GameBoard = () => {
             ...(currentGame.hardMode && {fastestHardmode}), 
           };
         });
-        setModalMsg(
-          'Congratulations! You won the game! Start a new game from the dropdown menu.'
-        );
+        setModalMsg(() => t('gameBoard.congratulations'));
       } else if (lost) {
         setStats((currentStats) => ({
           ...currentStats,
@@ -39,12 +39,10 @@ export const GameBoard = () => {
         }));
         const combinationText = currentGame.combination
           .map(
-            (color) => Object.keys(Color)[Object.values(Color).indexOf(color)]
+            (color) => t(`general.colors.${Object.keys(Color)[Object.values(Color).indexOf(color)]}`)
           )
           .join(', ');
-        setModalMsg(
-          `You failed to guess the correct combination, which was: ${combinationText}. Start a new game from the dropdown menu.`
-        );
+        setModalMsg(() => t('gameBoard.gameOver', {combinationText}));
       }
 
       if (won || lost) {

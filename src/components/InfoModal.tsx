@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { useTranslation } from 'react-i18next';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
@@ -9,6 +10,7 @@ type ModalProps = {
 };
 
 export const InfoModal = ({ children, show, onCloseModal }: ModalProps) => {
+  const {t} = useTranslation();
   return (
     <div aria-live="polite" aria-atomic="true">
       <Modal show={show}>
@@ -21,7 +23,7 @@ export const InfoModal = ({ children, show, onCloseModal }: ModalProps) => {
             variant="outline-primary"
             onClick={() => onCloseModal()}
           >
-            OK
+            { t('general.continue') }
           </Button>
         </Modal.Footer>
       </Modal>

@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { Color, ColorButtonProps } from '@/types';
 import { useSelector } from '@/hooks/reduxHooks';
-import { ColorDropdownItem, ColorToggle } from '../StyledDropdown';
+import { ColorDropdownItem, ColorToggle } from '@/components/StyledDropdown';
+import { getColor } from '@/utils/gameUtils';
 
 export const ColorButton = ({
   color,
@@ -9,7 +11,8 @@ export const ColorButton = ({
   disabled,
 }: ColorButtonProps) => {
   const currentGame = useSelector((state) => state.currentGame);
-  const colorName = Object.keys(Color)[Object.values(Color).indexOf(color)] || 'Choose';
+  const {t} = useTranslation();
+  const colorName = color ? getColor(color) : t('general.choose');
   return (
     <Dropdown>
       <Dropdown.Toggle

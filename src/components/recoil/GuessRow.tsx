@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useRecoilState } from 'recoil';
 import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
@@ -11,6 +12,7 @@ import { ColorButton } from './ColorButton';
 
 const GuessRow = ({ guess, disabled }: GuessRowProps) => {
   const [currentGame, setCurrentGame] = useRecoilState(currentGameState);
+  const {t} = useTranslation();
   const [activeGuess, setActiveGuess] = useState<Color[]>(
     disabled ? guess.combination : new Array(4).fill(null)
   );
@@ -53,7 +55,7 @@ const GuessRow = ({ guess, disabled }: GuessRowProps) => {
           }}
           onClick={() => handleGuess()}
         >
-          Check
+          { t('guessRow.check') }
         </Button>
       )}
     </Stack>
