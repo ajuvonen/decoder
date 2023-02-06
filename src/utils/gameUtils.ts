@@ -1,8 +1,19 @@
 import { Color, Game, Result } from '../types';
+import i18next from '@/i18n';
+
+/**
+ * Get localized color name
+ * @param {Color} color Value to look up and translate
+ * @returns {string} Localized value
+ */
+export const getColor = (color: Color) => {
+  const colorName = Object.keys(Color)[Object.values(Color).indexOf(color)];
+  return i18next.t(`general.colors.${colorName}`);
+};
 
 /**
  * Create a new game
- * @param {boolean}hardMode Set to true to create a harder version of the game
+ * @param {boolean} hardMode Set to true to create a harder version of the game
  * @param {number} started Date.now() when the game started
  * @returns {Game} New game with default properties
  */
