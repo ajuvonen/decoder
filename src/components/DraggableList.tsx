@@ -1,8 +1,8 @@
-import { ComponentType, useRef } from 'react';
-import { move } from 'ramda';
+import {ComponentType, useRef} from 'react';
+import {move} from 'ramda';
 import Stack from 'react-bootstrap/Stack';
-import { Color, ColorButtonProps } from '@/types';
-import { useWindowSize } from '@/hooks/windowSize';
+import {Color, ColorButtonProps} from '@/types';
+import {useWindowSize} from '@/hooks/windowSize';
 
 type DraggableListProps = {
   list: Color[];
@@ -34,14 +34,17 @@ export const DraggableList = ({
     dragOverIndex.current = index;
   };
 
-  const handleDragEnter = (index: number) => (e: React.DragEvent<HTMLDivElement>) => {
+  const handleDragEnter =
+    (index: number) => (e: React.DragEvent<HTMLDivElement>) => {
       e.preventDefault();
       dragOverIndex.current = index;
     };
 
   const handleDragEnd = () => {
     if (dragIndex.current != dragOverIndex.current) {
-      setList((current) => move(dragIndex.current, dragOverIndex.current, current));
+      setList((current) =>
+        move(dragIndex.current, dragOverIndex.current, current)
+      );
     }
   };
 

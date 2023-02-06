@@ -1,15 +1,14 @@
-
-import { Outlet } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import {Outlet} from 'react-router-dom';
+import {Provider} from 'react-redux';
 import {store} from '@/redux-store/store';
-import { LocalStorageSync } from '@/components/redux/LocalStorageSync';
+import {LocalStorageSync} from '@/components/redux/LocalStorageSync';
 
-export default function Home() {  
+export default function Home() {
   return (
     <Provider store={store}>
       <LocalStorageSync>
-        <Outlet/>
+        <Outlet />
       </LocalStorageSync>
     </Provider>
   );
-};
+}

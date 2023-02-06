@@ -24,7 +24,7 @@
     "semiCorrect": "Correct color, wrong slot"
   },
   "guessRow": {
-    "check"  : "Check"
+    "check": "Check"
   },
   "home": {
     "instruction1": "Decoder (aka Mastermind, aka Code breaker) is a classic game of deduction where you try to guess the correct hidden color combination. Choose your colors, then observe the hint given. The green number represents the number of colors that were on their right place, whereas the orange number represents correct colors in the wrong slot.",

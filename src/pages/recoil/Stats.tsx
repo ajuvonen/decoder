@@ -1,6 +1,6 @@
-import { useTranslation } from 'react-i18next';
-import { useRecoilValue } from 'recoil';
-import { statsState } from '@/recoil-store';
+import {useTranslation} from 'react-i18next';
+import {useRecoilValue} from 'recoil';
+import {statsState} from '@/recoil-store';
 
 export default function Stats() {
   const stats = useRecoilValue(statsState);
@@ -20,12 +20,12 @@ export default function Stats() {
     <>
       <h1 className="mt-5">{t('stats.title')}</h1>
       <p className="mt-3 fs-3">
-        {t('stats.wonGames', { won: stats.won, percentage })}
+        {t('stats.wonGames', {won: stats.won, percentage})}
       </p>
-      <p className="fs-3">{t('stats.lostGames', { lost: stats.lost })}</p>
+      <p className="fs-3">{t('stats.lostGames', {lost: stats.lost})}</p>
       {!!stats.fastest && (
         <p className="fs-3">
-          {t('stats.fastestTimeEasy', { time: getFastestTime(stats.fastest) })}
+          {t('stats.fastestTimeEasy', {time: getFastestTime(stats.fastest)})}
         </p>
       )}
       {!!stats.fastestHardmode && (

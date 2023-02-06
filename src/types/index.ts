@@ -1,7 +1,7 @@
 export type Guess = {
   combination: Color[];
   round: number;
-  result: Result,
+  result: Result;
 };
 
 export type Game = {
@@ -19,9 +19,9 @@ export type Result = {
 };
 
 export type ColorButtonProps = {
-  color: Color,
-  disabled: boolean,
-  onChangeColor: (color: Color) => void,
+  color: Color;
+  disabled: boolean;
+  onChangeColor: (color: Color) => void;
 };
 
 export type GuessRowProps = {

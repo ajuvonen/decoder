@@ -1,16 +1,16 @@
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 import Dropdown from 'react-bootstrap/Dropdown';
-import { useGameContext } from '@/context/GameContext';
-import { Color, ColorButtonProps } from '@/types';
-import { ColorDropdownItem, ColorToggle } from '@/components/StyledDropdown';
-import { getColor } from '@/utils/gameUtils';
+import {useGameContext} from '@/context/GameContext';
+import {Color, ColorButtonProps} from '@/types';
+import {ColorDropdownItem, ColorToggle} from '@/components/StyledDropdown';
+import {getColor} from '@/utils/gameUtils';
 
 export const ColorButton = ({
   color,
   onChangeColor,
   disabled,
 }: ColorButtonProps) => {
-  const { currentGame } = useGameContext();
+  const {currentGame} = useGameContext();
   const {t} = useTranslation();
   const colorName = color ? getColor(color) : t('general.choose');
   return (

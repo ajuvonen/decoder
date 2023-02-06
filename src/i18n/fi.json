@@ -24,7 +24,7 @@
     "semiCorrect": "Oikea väri, väärä sijainti"
   },
   "guessRow": {
-    "check"  : "Tarkista"
+    "check": "Tarkista"
   },
   "home": {
     "instruction1": "Decoder, kauppanimeltään Mastermind tai Codebreaker, on klassinen päättelypeli jossa pelaaja yrittää arvata piilotetun väriyhdistelmän. Valitse värit ja tutki saamaasi vihjettä. Vihreä numero esittää sellaisten värien lukumäärää, jossa sekä väri että sijainti oli oikein. Oranssi väri ilmaisee sellaisten värien lukumäärän, jotka ovat väärässä paikassa.",

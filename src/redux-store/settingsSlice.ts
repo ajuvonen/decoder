@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { loadLocalStorage } from '@/utils/localStorageUtils';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {loadLocalStorage} from '@/utils/localStorageUtils';
 
 type Settings = {
   instructionShown: boolean;
@@ -24,6 +24,6 @@ const settingsSlice = createSlice({
   },
 });
 
-export const { setInstructionShown, setRefreshRequired } = settingsSlice.actions;
+export const {setInstructionShown, setRefreshRequired} = settingsSlice.actions;
 
 export const settingsReducer = settingsSlice.reducer;

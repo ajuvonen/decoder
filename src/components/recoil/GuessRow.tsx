@@ -1,16 +1,16 @@
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useRecoilState } from 'recoil';
+import {useState} from 'react';
+import {useTranslation} from 'react-i18next';
+import {useRecoilState} from 'recoil';
 import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
-import { Color, Guess, GuessRowProps } from '@/types';
-import { currentGameState } from '@/recoil-store';
-import { GuessResult } from '@/components/GuessResult';
-import { getResult } from '@/utils/gameUtils';
-import { DraggableList } from '@/components/DraggableList';
-import { ColorButton } from './ColorButton';
+import {Color, Guess, GuessRowProps} from '@/types';
+import {currentGameState} from '@/recoil-store';
+import {GuessResult} from '@/components/GuessResult';
+import {getResult} from '@/utils/gameUtils';
+import {DraggableList} from '@/components/DraggableList';
+import {ColorButton} from './ColorButton';
 
-const GuessRow = ({ guess, disabled }: GuessRowProps) => {
+const GuessRow = ({guess, disabled}: GuessRowProps) => {
   const [currentGame, setCurrentGame] = useRecoilState(currentGameState);
   const {t} = useTranslation();
   const [activeGuess, setActiveGuess] = useState<Color[]>(
@@ -55,7 +55,7 @@ const GuessRow = ({ guess, disabled }: GuessRowProps) => {
           }}
           onClick={handleGuess}
         >
-          { t('guessRow.check') }
+          {t('guessRow.check')}
         </Button>
       )}
     </Stack>
@@ -67,4 +67,4 @@ GuessRow.defaultProps = {
   disabled: false,
 };
 
-export { GuessRow };
+export {GuessRow};

@@ -1,9 +1,9 @@
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 import Dropdown from 'react-bootstrap/Dropdown';
-import { Color, ColorButtonProps } from '@/types';
-import { useSelector } from '@/hooks/reduxHooks';
-import { ColorDropdownItem, ColorToggle } from '@/components/StyledDropdown';
-import { getColor } from '@/utils/gameUtils';
+import {Color, ColorButtonProps} from '@/types';
+import {useSelector} from '@/hooks/reduxHooks';
+import {ColorDropdownItem, ColorToggle} from '@/components/StyledDropdown';
+import {getColor} from '@/utils/gameUtils';
 
 export const ColorButton = ({
   color,

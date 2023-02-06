@@ -1,4 +1,3 @@
-
 /**
  * Load a value from localStorage
  * @param key Key to find
@@ -13,7 +12,7 @@ export const loadLocalStorage = <T>(key: string, initialValue: T): T => {
     }
 
     return initialValue;
-  } catch(e) {
+  } catch (e) {
     return initialValue;
   }
 };
