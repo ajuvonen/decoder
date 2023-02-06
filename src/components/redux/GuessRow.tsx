@@ -17,6 +17,8 @@ const GuessRow = ({ guess, disabled }: GuessRowProps) => {
     disabled ? guess.combination : new Array(4).fill(null)
   );
 
+  const handleGuess = () => dispatch(addGuess(activeGuess));
+
   return (
     <Stack direction="horizontal" className="justify-content-center" gap={3}>
       <DraggableList
@@ -37,7 +39,7 @@ const GuessRow = ({ guess, disabled }: GuessRowProps) => {
             fontSize: '1.5rem',
             marginTop: '1rem',
           }}
-          onClick={() => dispatch(addGuess(activeGuess))}
+          onClick={handleGuess}
         >
           { t('guessRow.check') }
         </Button>

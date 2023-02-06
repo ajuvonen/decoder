@@ -39,6 +39,13 @@ export default function Play() {
     }
   };
 
+  const handleCloseModal = () => {
+    setSettings((currentSettings) => ({
+      ...currentSettings,
+      instructionShown: true,
+    }));
+  };
+
   return (
     <>
       <h1 className="mt-5">{t('play.title')}</h1>
@@ -52,12 +59,7 @@ export default function Play() {
       </DropdownButton>
       <InfoModal
         show={!settings.instructionShown}
-        onCloseModal={() =>
-          setSettings((currentSettings) => ({
-            ...currentSettings,
-            instructionShown: true,
-          }))
-        }
+        onCloseModal={handleCloseModal}
       >
         {t('play.infoModal')}
       </InfoModal>
@@ -72,7 +74,7 @@ export default function Play() {
           >
             {t('general.cancel')}
           </Button>
-          <Button variant="danger" onClick={() => handleCreateGame()}>
+          <Button variant="danger" onClick={handleCreateGame}>
             {t('general.continue')}
           </Button>
         </Modal.Footer>

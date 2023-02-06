@@ -53,7 +53,7 @@ const GuessRow = ({ guess, disabled }: GuessRowProps) => {
             fontSize: '1.5rem',
             marginTop: '1rem',
           }}
-          onClick={() => handleGuess()}
+          onClick={handleGuess}
         >
           { t('guessRow.check') }
         </Button>
