@@ -35,7 +35,7 @@ export const ColorButton = ({
                 onClick={() => onChangeColor(value)}
               >
                 <span aria-hidden></span>
-                {key}
+                {t(`general.colors.${key}`)}
               </ColorDropdownItem>
             ))}
         </>
