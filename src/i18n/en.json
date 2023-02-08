@@ -50,6 +50,8 @@
     "fastestTimeEasy": "Fastest time (easy): {{time}}",
     "lostGames": "Lost games: {{lost}}",
     "reset": "Reset stats",
+    "resetConfirmationTitle": "Are you sure?",
+    "resetConfirmationContent": "Do you wish to reset your stats? This action can't be cancelled.",
     "title": "Stats",
     "wonGames": "Won games: {{won}} ({{percentage}} %)"
   }

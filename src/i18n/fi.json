@@ -50,6 +50,8 @@
     "fastestTimeEasy": "Nopein aika (helppo): {{time}}",
     "lostGames": "Hävityt pelit: {{lost}}",
     "reset": "Tyhjennä tilastot",
+    "resetConfirmationTitle": "Oletko varma?",
+    "resetConfirmationContent": "Haluatko tyhjentää tilastosi? Toimintoa ei voi perua.",
     "title": "Tilastot",
     "wonGames": "Voitetut pelit: {{won}} ({{percentage}} %)"
   }
