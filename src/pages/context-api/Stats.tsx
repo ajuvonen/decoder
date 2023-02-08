@@ -1,8 +1,9 @@
 import {useTranslation} from 'react-i18next';
 import {useGameContext} from '@/context/GameContext';
+import Button from 'react-bootstrap/Button';
 
 export default function Stats() {
-  const {stats} = useGameContext();
+  const {stats, setStats} = useGameContext();
   const {t} = useTranslation();
   const percentage =
     stats.won + stats.lost
@@ -13,6 +14,15 @@ export default function Stats() {
     const minutes = Math.floor(totalSeconds / 60);
     const remainder = totalSeconds - minutes * 60;
     return `${minutes}m ${remainder}s`;
+  };
+
+  const handleReset = () => {
+    setStats({
+      fastest: 0,
+      fastestHardmode: 0,
+      lost: 0,
+      won: 0,
+    })
   };
 
   return (
@@ -34,6 +44,9 @@ export default function Stats() {
           })}
         </p>
       )}
+      <div>
+        <Button variant="danger" onClick={handleReset}>{t('stats.reset')}</Button>
+      </div>
     </>
   );
 }

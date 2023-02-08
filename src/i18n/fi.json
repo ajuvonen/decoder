@@ -39,7 +39,7 @@
   "play": {
     "difficultMode": "Vaikea (seitsemän väriä)",
     "easyMode": "Helppo (viisi väriä)",
-    "createGame": "Aloita Peli",
+    "createGame": "Aloita peli",
     "infoModal": "Tervetuloa pelaamaan Decoderia! Aloittaaksesi, valitse vaikeustaso \"Aloita Peli\"-valikosta. Valittu vaikeusaste vaikuttaa käytössä olevien värien ja yritysten määrään.",
     "newGameConfirmationTitle": "Oletko varma?",
     "newGameConfirmationContent": "Uuden pelin aloittaminen päättää nykyisen pelin. Tämä näkyy tappiona tilastoissasi.",
@@ -49,6 +49,7 @@
     "fastestTimeDifficult": "Nopein aika (vaikea): {{time}}",
     "fastestTimeEasy": "Nopein aika (helppo): {{time}}",
     "lostGames": "Hävityt pelit: {{lost}}",
+    "reset": "Tyhjennä tilastot",
     "title": "Tilastot",
     "wonGames": "Voitetut pelit: {{won}} ({{percentage}} %)"
   }

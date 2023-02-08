@@ -41,10 +41,16 @@ const statsSlice = createSlice({
     refreshStatsState: (state, {payload}: PayloadAction<Stats>) => {
       return payload;
     },
+    resetStats: () => ({
+      won: 0,
+      lost: 0,
+      fastest: 0,
+      fastestHardmode: 0,
+    }),
   },
 });
 
-export const {incrementLost, incrementWon, refreshStatsState} =
+export const {incrementLost, incrementWon, refreshStatsState, resetStats} =
   statsSlice.actions;
 
 export const statsReducer = statsSlice.reducer;
