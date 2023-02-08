@@ -29,14 +29,14 @@ const ResultBlock = styled('div')`
   justify-content: space-around;
   align-items: center;
   font-size: 4rem;
-  border: 1px solid #222;
+  border: 1px solid #2C3E50;
   border-radius: 6px;
   margin-top: 1rem;
 
   :before {
     position: absolute;
     content: '';
-    border: 0.5px solid #222;
+    border: 0.5px solid #2C3E50;
     top: 0;
     bottom: 0;
     left: 50%;
@@ -47,7 +47,7 @@ const ResultBlock = styled('div')`
     font-size: 1rem;
     position: absolute;
     top: 0;
-    border-bottom: 1px solid #222;
+    border-bottom: 1px solid #2C3E50;
     width: 100%;
     text-align: center;
     background: white;
