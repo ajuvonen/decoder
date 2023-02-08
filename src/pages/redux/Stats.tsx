@@ -1,11 +1,14 @@
+import {useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {useSelector} from '@/hooks/reduxHooks';
 import Button from 'react-bootstrap/Button';
 import {useDispatch} from 'react-redux';
-import { resetStats } from '@/redux-store/statsSlice';
+import {resetStats} from '@/redux-store/statsSlice';
+import {ConfirmationModal} from '@/components/ConfirmationModal';
 
 export default function Stats() {
   const stats = useSelector((state) => state.stats);
+  const [showResetModal, setShowResetModal] = useState(false);
   const {t} = useTranslation();
   const dispatch = useDispatch();
   const percentage =
@@ -19,7 +22,10 @@ export default function Stats() {
     return `${minutes}m ${remainder}s`;
   };
 
-  const handleReset = () => dispatch(resetStats());
+  const handleReset = () => {
+    dispatch(resetStats());
+    setShowResetModal(false);
+  };
 
   return (
     <>
@@ -41,10 +47,17 @@ export default function Stats() {
         </p>
       )}
       <div>
-        <Button variant="danger" onClick={handleReset}>
+        <Button variant="danger" onClick={() => setShowResetModal(true)}>
           {t('stats.reset')}
         </Button>
       </div>
+      <ConfirmationModal
+        show={showResetModal}
+        header={t('stats.resetConfirmationTitle')}
+        body={t('stats.resetConfirmationContent')}
+        onClose={() => setShowResetModal(false)}
+        onContinue={handleReset}
+      />
     </>
   );
 }

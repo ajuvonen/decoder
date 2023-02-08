@@ -1,9 +1,12 @@
+import {useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {useGameContext} from '@/context/GameContext';
 import Button from 'react-bootstrap/Button';
+import {ConfirmationModal} from '@/components/ConfirmationModal';
 
 export default function Stats() {
   const {stats, setStats} = useGameContext();
+  const [showResetModal, setShowResetModal] = useState(false);
   const {t} = useTranslation();
   const percentage =
     stats.won + stats.lost
@@ -22,7 +25,8 @@ export default function Stats() {
       fastestHardmode: 0,
       lost: 0,
       won: 0,
-    })
+    });
+    setShowResetModal(false);
   };
 
   return (
@@ -45,8 +49,17 @@ export default function Stats() {
         </p>
       )}
       <div>
-        <Button variant="danger" onClick={handleReset}>{t('stats.reset')}</Button>
+        <Button variant="danger" onClick={() => setShowResetModal(true)}>
+          {t('stats.reset')}
+        </Button>
       </div>
+      <ConfirmationModal
+        show={showResetModal}
+        header={t('stats.resetConfirmationTitle')}
+        body={t('stats.resetConfirmationContent')}
+        onClose={() => setShowResetModal(false)}
+        onContinue={handleReset}
+      />
     </>
   );
 }

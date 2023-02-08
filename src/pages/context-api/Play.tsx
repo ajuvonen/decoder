@@ -2,12 +2,11 @@ import {useRef, useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
 import {useGameContext} from '@/context/GameContext';
 import {createGame} from '@/utils/gameUtils';
 import {GameBoard} from '@/components/context-api/GameBoard';
 import {InfoModal} from '@/components/InfoModal';
+import {ConfirmationModal} from '@/components/ConfirmationModal';
 
 export default function Play() {
   const {currentGame, setCurrentGame, setStats, settings, setSettings} =
@@ -62,21 +61,13 @@ export default function Play() {
         {t('play.infoModal')}
       </InfoModal>
       <GameBoard />
-      <Modal show={showNewGameModal}>
-        <Modal.Header>{t('play.newGameConfirmationTitle')}</Modal.Header>
-        <Modal.Body>{t('play.newGameConfirmationContent')}</Modal.Body>
-        <Modal.Footer>
-          <Button
-            variant="outline-secondary"
-            onClick={() => setShowNewGameModal(false)}
-          >
-            {t('general.cancel')}
-          </Button>
-          <Button variant="danger" onClick={handleCreateGame}>
-            {t('general.continue')}
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <ConfirmationModal
+        show={showNewGameModal}
+        header={t('play.newGameConfirmationTitle')}
+        body={t('play.newGameConfirmationContent')}
+        onClose={() => setShowNewGameModal(false)}
+        onContinue={handleCreateGame}
+      />
     </>
   );
 }
