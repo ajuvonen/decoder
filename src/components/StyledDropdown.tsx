@@ -8,7 +8,6 @@ const ColorToggle = styled.div`
     props.color ||
     'repeating-linear-gradient(-55deg,#222,#222 10px,#333 10px,#333 20px)'};
   color: white;
-  border: 1px solid #222;
   border-radius: 6px;
   transition: 0.2s;
   font-size: 1.5rem;
