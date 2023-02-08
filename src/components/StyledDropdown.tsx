@@ -6,7 +6,7 @@ const ColorToggle = styled.div`
   height: 150px;
   background: ${(props) =>
     props.color ||
-    'repeating-linear-gradient(-55deg,#222,#222 10px,#333 10px,#333 20px)'};
+    'repeating-linear-gradient(-55deg, #222, #222 10px, #333 10px, #333 20px)'};
   color: white;
   border-radius: 6px;
   transition: 0.2s;
@@ -41,12 +41,12 @@ const ColorToggle = styled.div`
 const ColorDropdownItem = styled(Dropdown.Item)`
   display: flex;
   align-items: center;
+  color: #2C3E50;
 
   > span {
     border-radius: 6px;
     margin-right: 0.5rem;
     display: inline-block;
-    border: 1px solid #222;
     width: 25px;
     height: 25px;
     background: ${(props) => props.color};
