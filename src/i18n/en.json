@@ -39,7 +39,7 @@
   "play": {
     "difficultMode": "Difficult (seven colors)",
     "easyMode": "Easy (five colors)",
-    "createGame": "Create Game",
+    "createGame": "Create game",
     "infoModal": "Welcome to Decoder! To begin, choose the difficulty with the \"Create Game\" dropdown. Your difficulty setting will affect the number of tries you have.",
     "newGameConfirmationTitle": "Are you sure?",
     "newGameConfirmationContent": "Creating a new game will end the current one. This will count as a loss in your stats.",
@@ -49,6 +49,7 @@
     "fastestTimeDifficult": "Fastest time (difficult): {{time}}",
     "fastestTimeEasy": "Fastest time (easy): {{time}}",
     "lostGames": "Lost games: {{lost}}",
+    "reset": "Reset stats",
     "title": "Stats",
     "wonGames": "Won games: {{won}} ({{percentage}} %)"
   }
