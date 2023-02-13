@@ -46,11 +46,21 @@ export default function Play() {
   return (
     <>
       <h1 className="mt-5">{t('play.title')}</h1>
-      <DropdownButton className="mt-3" title={t('play.createGame')}>
-        <Dropdown.Item onClick={() => confirmCreateGame(false)}>
+      <DropdownButton
+        className="mt-3"
+        title={t('play.createGame')}
+        data-test="new-game-dropdown"
+      >
+        <Dropdown.Item
+          onClick={() => confirmCreateGame(false)}
+          data-test="easy-mode-button"
+        >
           {t('play.easyMode')}
         </Dropdown.Item>
-        <Dropdown.Item onClick={() => confirmCreateGame(true)}>
+        <Dropdown.Item
+          onClick={() => confirmCreateGame(true)}
+          data-test="difficult-mode-button"
+        >
           {t('play.difficultMode')}
         </Dropdown.Item>
       </DropdownButton>
