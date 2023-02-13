@@ -31,6 +31,7 @@ export const LanguageSelector = () => {
           key={language}
           role="button"
           onClick={() => setLanguage(language)}
+          data-test={`${language}-locale-button`}
         >
           {i18n.t('general.localeName', {lng: language})}
         </LanguageButton>
