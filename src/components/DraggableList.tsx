@@ -19,7 +19,7 @@ export const DraggableList = ({
 }: DraggableListProps) => {
   const dragIndex = useRef(0);
   const dragOverIndex = useRef(0);
-  const vertical = useWindowSize().width < 1000;
+  const vertical = useWindowSize().width <= 1000;
 
   const handleChangeColor = (index: number) => (color: Color) => {
     setList((current) => [
