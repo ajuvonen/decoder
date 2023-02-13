@@ -71,7 +71,9 @@ export const GameBoard = () => {
   return (
     <div className="mt-4 mb-5 w-100">
       {currentGame.active &&
-        currentGame.guesses.length < currentGame.maxGuesses && <GuessRow />}
+        currentGame.guesses.length < currentGame.maxGuesses && (
+          <GuessRow data-test="active-guess-row" />
+        )}
       {currentGame.guesses.map((guess) => (
         <GuessRow key={guess.round} guess={guess} disabled />
       ))}

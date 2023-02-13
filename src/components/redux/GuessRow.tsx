@@ -9,7 +9,7 @@ import {useDispatch, useSelector} from '@/hooks/reduxHooks';
 import {DraggableList} from '@/components/DraggableList';
 import {ColorButton} from './ColorButton';
 
-const GuessRow = ({guess, disabled}: GuessRowProps) => {
+const GuessRow = ({guess, disabled, ...rest}: GuessRowProps) => {
   const currentGame = useSelector((state) => state.currentGame);
   const dispatch = useDispatch();
   const {t} = useTranslation();
@@ -20,7 +20,7 @@ const GuessRow = ({guess, disabled}: GuessRowProps) => {
   const handleGuess = () => dispatch(addGuess(activeGuess));
 
   return (
-    <Stack direction="horizontal" className="justify-content-center" gap={3}>
+    <Stack direction="horizontal" className="justify-content-center" gap={3} {...rest}>
       <DraggableList
         list={activeGuess}
         setList={setActiveGuess}

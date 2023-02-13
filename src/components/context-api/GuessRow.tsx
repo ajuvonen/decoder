@@ -9,7 +9,7 @@ import {getResult} from '@/utils/gameUtils';
 import {DraggableList} from '@/components/DraggableList';
 import {ColorButton} from './ColorButton';
 
-const GuessRow = ({guess, disabled}: GuessRowProps) => {
+const GuessRow = ({guess, disabled, ...rest}: GuessRowProps) => {
   const {currentGame, setCurrentGame} = useGameContext();
   const {t} = useTranslation();
   const [activeGuess, setActiveGuess] = useState<Color[]>(
@@ -33,7 +33,7 @@ const GuessRow = ({guess, disabled}: GuessRowProps) => {
   };
 
   return (
-    <Stack direction="horizontal" className="justify-content-center" gap={3}>
+    <Stack direction="horizontal" className="justify-content-center" gap={3} {...rest}>
       <DraggableList
         list={activeGuess}
         setList={setActiveGuess}

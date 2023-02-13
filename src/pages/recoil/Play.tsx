@@ -7,7 +7,7 @@ import {createGame} from '@/utils/gameUtils';
 import {GameBoard} from '@/components/recoil/GameBoard';
 import {InfoModal} from '@/components/InfoModal';
 import {settingsState, currentGameState, statsState} from '@/recoil-store';
-import { ConfirmationModal } from '@/components/ConfirmationModal';
+import {ConfirmationModal} from '@/components/ConfirmationModal';
 
 export default function Play() {
   const [currentGame, setCurrentGame] = useRecoilState(currentGameState);
@@ -48,11 +48,21 @@ export default function Play() {
   return (
     <>
       <h1 className="mt-5">{t('play.title')}</h1>
-      <DropdownButton className="mt-3" title={t('play.createGame')}>
-        <Dropdown.Item onClick={() => confirmCreateGame(false)}>
+      <DropdownButton
+        className="mt-3"
+        title={t('play.createGame')}
+        data-test="new-game-dropdown"
+      >
+        <Dropdown.Item
+          onClick={() => confirmCreateGame(false)}
+          data-test="easy-mode-button"
+        >
           {t('play.easyMode')}
         </Dropdown.Item>
-        <Dropdown.Item onClick={() => confirmCreateGame(true)}>
+        <Dropdown.Item
+          onClick={() => confirmCreateGame(true)}
+          data-test="difficult-mode-button"
+        >
           {t('play.difficultMode')}
         </Dropdown.Item>
       </DropdownButton>
