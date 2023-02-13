@@ -54,8 +54,13 @@ export const GameBoard = () => {
         currentGame.guesses.length < currentGame.maxGuesses && (
           <GuessRow data-test="active-guess-row" />
         )}
-      {currentGame.guesses.map((guess) => (
-        <GuessRow key={guess.round} guess={guess} disabled />
+      {currentGame.guesses.map((guess, index) => (
+        <GuessRow
+          key={guess.round}
+          guess={guess}
+          disabled
+          data-test={`guess-row-${index}`}
+        />
       ))}
       <InfoModal show={showModal} onCloseModal={() => setShowModal(false)}>
         {modalMsg}

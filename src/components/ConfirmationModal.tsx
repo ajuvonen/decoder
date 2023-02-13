@@ -3,14 +3,20 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
 type ConfirmationModalProps = {
-  show: boolean,
-  header: string,
-  body: string,
-  onClose: () => void,
-  onContinue: () => void,
+  show: boolean;
+  header: string;
+  body: string;
+  onClose: () => void;
+  onContinue: () => void;
 };
 
-export const ConfirmationModal = ({show, header, body, onClose, onContinue}: ConfirmationModalProps) => {
+export const ConfirmationModal = ({
+  show,
+  header,
+  body,
+  onClose,
+  onContinue,
+}: ConfirmationModalProps) => {
   const {t} = useTranslation();
 
   return (
@@ -21,10 +27,15 @@ export const ConfirmationModal = ({show, header, body, onClose, onContinue}: Con
         <Button
           variant="outline-secondary"
           onClick={onClose}
+          data-test="confirmation-modal-cancel-button"
         >
           {t('general.cancel')}
         </Button>
-        <Button variant="danger" onClick={onContinue}>
+        <Button
+          variant="danger"
+          onClick={onContinue}
+          data-test="confirmation-modal-continue-button"
+        >
           {t('general.continue')}
         </Button>
       </Modal.Footer>

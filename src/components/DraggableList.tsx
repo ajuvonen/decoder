@@ -61,6 +61,7 @@ export const DraggableList = ({
           onDragEnter={handleDragEnter(index)}
           onDragEnd={handleDragEnd}
           draggable={!disabled}
+          data-test={`draggable-item-${index}`}
         >
           <ButtonComponent
             color={color}

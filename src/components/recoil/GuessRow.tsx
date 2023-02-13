@@ -34,7 +34,12 @@ const GuessRow = ({guess, disabled, ...rest}: GuessRowProps) => {
   };
 
   return (
-    <Stack direction="horizontal" className="justify-content-center" gap={3} {...rest}>
+    <Stack
+      direction="horizontal"
+      className="justify-content-center"
+      gap={3}
+      {...rest}
+    >
       <DraggableList
         list={activeGuess}
         setList={setActiveGuess}
@@ -54,6 +59,7 @@ const GuessRow = ({guess, disabled, ...rest}: GuessRowProps) => {
             marginTop: '1rem',
           }}
           onClick={handleGuess}
+          data-test="check-button"
         >
           {t('guessRow.check')}
         </Button>
