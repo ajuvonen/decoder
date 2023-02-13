@@ -15,6 +15,7 @@ export const Home = () => {
       <Stack
         direction="horizontal"
         gap={3}
+        data-test="version-selection"
         className="justify-content-center mt-3"
       >
         <Button

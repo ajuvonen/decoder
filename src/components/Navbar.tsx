@@ -29,10 +29,10 @@ export const Navbar = () => {
             <NavbarBS.Toggle aria-controls="basic-navbar-nav" />
             <NavbarBS.Collapse id="basic-navbar-nav">
               <Nav>
-                <Nav.Link to={`${currentPath}play`} as={NavLink}>
+                <Nav.Link to={`${currentPath}play`} as={NavLink} data-test="play-link">
                   {t('navbar.play')}
                 </Nav.Link>
-                <Nav.Link to={`${currentPath}stats`} as={NavLink}>
+                <Nav.Link to={`${currentPath}stats`} as={NavLink} data-test="stats-link">
                   {t('navbar.stats')}
                 </Nav.Link>
                 {hasMenu && <LanguageSelector />}

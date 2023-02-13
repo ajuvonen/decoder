@@ -12,12 +12,16 @@ type ModalProps = {
 export const InfoModal = ({children, show, onCloseModal}: ModalProps) => {
   const {t} = useTranslation();
   return (
-    <div aria-live="polite" aria-atomic="true">
+    <div aria-live="polite" aria-atomic="true" data-test="information-modal">
       <Modal show={show}>
-        <Modal.Header closeButton>Information</Modal.Header>
+        <Modal.Header closeButton>{t('general.information')}</Modal.Header>
         <Modal.Body>{children}</Modal.Body>
         <Modal.Footer>
-          <Button variant="outline-primary" onClick={() => onCloseModal()}>
+          <Button
+            variant="outline-primary"
+            onClick={() => onCloseModal()}
+            data-test="continue-button"
+          >
             {t('general.continue')}
           </Button>
         </Modal.Footer>
