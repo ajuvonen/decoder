@@ -18,15 +18,17 @@ jobs:
           name: Run test
           command: npm run e2e
   build:
-      docker:
-        - image: cimg/node:18.14.0
-      steps:
-        - checkout
-        - run:
-            name: Build
-            command: npm run build
+    docker:
+      - image: cimg/node:18.14.0
+    steps:
+      - checkout
+      - run:
+          name: Build
+          command: npm run build
 workflows:
   test_and_build:
     jobs:
       - test
-      - build
+      - build:
+          requires:
+            - test
