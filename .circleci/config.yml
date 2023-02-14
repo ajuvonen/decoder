@@ -8,7 +8,6 @@ jobs:
       - image: cimg/node:18.14.0-browsers
     steps:
       - checkout
-      - browser-tools/install-firefox
       - node/install-packages
       - run:
           name: Run app in the background
@@ -22,6 +21,7 @@ jobs:
       - image: cimg/node:18.14.0
     steps:
       - checkout
+      - node/install-packages
       - run:
           name: Build
           command: npm run build
