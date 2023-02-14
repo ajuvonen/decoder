@@ -1,5 +1,6 @@
 import {useTranslation} from 'react-i18next';
 import styled, {keyframes} from 'styled-components';
+import classNames from 'classnames';
 import {Guess} from '@/types';
 
 type GuessResultProps = {
@@ -21,7 +22,7 @@ const rotate = keyframes`
   }
 `;
 
-const ResultBlock = styled('div')`
+const ResultBlock = styled.div`
   position: relative;
   width: 150px;
   height: 150px;
@@ -77,7 +78,7 @@ export const GuessResult = ({guess, maxGuesses}: GuessResultProps) => {
   return (
     <ResultBlock
       info={t('guessResult.info', {round: guess.round, maxGuesses})}
-      className={`${guess.result.correct === 4 ? 'win' : ''}`}
+      className={classNames({win: guess.result.correct === 4})}
     >
       <span title={t('guessResult.correct')}>{guess.result.correct}</span>
       <span title={t('guessResult.semiCorrect')}>

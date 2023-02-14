@@ -1,4 +1,5 @@
 import {useRecoilValue} from 'recoil';
+import classNames from 'classnames';
 import {useTranslation} from 'react-i18next';
 import Dropdown from 'react-bootstrap/Dropdown';
 import {Color, ColorButtonProps} from '@/types';
@@ -21,7 +22,7 @@ export const ColorButton = ({
         role="button"
         color={color}
         disabled={disabled}
-        className={disabled ? 'disabled' : ''}
+        className={classNames({disabled})}
       >
         {colorName}
       </Dropdown.Toggle>
