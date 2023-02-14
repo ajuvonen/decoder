@@ -11,7 +11,7 @@ const ColorToggle = styled.div`
   border-radius: 6px;
   transition: 0.2s;
   font-size: 1.5rem;
-  cursor: move;
+  cursor: grab;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,6 +1,8 @@
-import {ComponentType, useRef} from 'react';
+import {ComponentType, useState} from 'react';
 import {move} from 'ramda';
 import Stack from 'react-bootstrap/Stack';
+import classNames from 'classnames';
+import styled from 'styled-components';
 import {Color, ColorButtonProps} from '@/types';
 import {useWindowSize} from '@/hooks/windowSize';
 
@@ -11,14 +13,38 @@ type DraggableListProps = {
   disabled: boolean;
 };
 
+const DraggableItem = styled.div`
+  position: relative;
+
+  &.target:before {
+    content: '';
+    position: absolute;
+    border: 2px solid #2C3E50;
+    border-radius: 4px;
+    left: -10px;
+    top: 10px;
+    bottom: 10px;
+  }
+
+  &.target:after {
+    content: '';
+    position: absolute;
+    border: 2px solid #2C3E50;
+    border-radius: 4px;
+    right: -10px;
+    top: 10px;
+    bottom: 10px;
+  }
+`;
+
 export const DraggableList = ({
   list,
   setList,
   ButtonComponent,
   disabled,
 }: DraggableListProps) => {
-  const dragIndex = useRef(0);
-  const dragOverIndex = useRef(0);
+  const [dragIndex, setDragIndex] = useState(0);
+  const [dragOverIndex, setDragOverIndex] = useState(0);
   const vertical = useWindowSize().width <= 1000;
 
   const handleChangeColor = (index: number) => (color: Color) => {
@@ -30,21 +56,14 @@ export const DraggableList = ({
   };
 
   const handleDragStart = (index: number) => {
-    dragIndex.current = index;
-    dragOverIndex.current = index;
+    setDragIndex(index);
+    setDragOverIndex(index);
   };
 
-  const handleDragEnter =
-    (index: number) => (e: React.DragEvent<HTMLDivElement>) => {
-      e.preventDefault();
-      dragOverIndex.current = index;
-    };
-
   const handleDragEnd = () => {
-    if (dragIndex.current != dragOverIndex.current) {
-      setList((current) =>
-        move(dragIndex.current, dragOverIndex.current, current)
-      );
+    if (dragIndex != dragOverIndex) {
+      setList((current) => move(dragIndex, dragOverIndex, current));
+      setDragIndex(dragOverIndex);
     }
   };
 
@@ -54,22 +73,36 @@ export const DraggableList = ({
       gap={vertical ? 1 : 3}
       className="mt-3 justify-content-center"
     >
-      {list.map((color, index) => (
-        <div
-          key={index}
-          onDragStart={() => handleDragStart(index)}
-          onDragEnter={handleDragEnter(index)}
-          onDragEnd={handleDragEnd}
-          draggable={!disabled}
-          data-test={`draggable-item-${index}`}
-        >
-          <ButtonComponent
-            color={color}
-            disabled={disabled}
-            onChangeColor={handleChangeColor(index)}
-          />
-        </div>
-      ))}
+      {disabled
+        ? list.map((color, index) => (
+            <ButtonComponent
+              key={index}
+              color={color}
+              disabled
+              onChangeColor={handleChangeColor(index)}
+            />
+          ))
+        : list.map((color, index) => (
+            <DraggableItem
+              key={index}
+              onDragStart={() => handleDragStart(index)}
+              onDragEnter={() => setDragOverIndex(index)}
+              onDragEnd={handleDragEnd}
+              onDragOver={(e) => e.preventDefault()}
+              draggable
+              data-test={`draggable-item-${index}`}
+              className={classNames({
+                'target':
+                  dragOverIndex === index && dragOverIndex !== dragIndex,
+              })}
+            >
+              <ButtonComponent
+                color={color}
+                disabled={disabled}
+                onChangeColor={handleChangeColor(index)}
+              />
+            </DraggableItem>
+          ))}
     </Stack>
   );
 };

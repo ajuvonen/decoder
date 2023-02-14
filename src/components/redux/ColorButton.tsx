@@ -1,4 +1,5 @@
 import {useTranslation} from 'react-i18next';
+import classNames from 'classnames';
 import Dropdown from 'react-bootstrap/Dropdown';
 import {Color, ColorButtonProps} from '@/types';
 import {useSelector} from '@/hooks/reduxHooks';
@@ -20,7 +21,7 @@ export const ColorButton = ({
         role="button"
         color={color}
         disabled={disabled}
-        className={disabled ? 'disabled' : ''}
+        className={classNames({disabled})}
       >
         {colorName}
       </Dropdown.Toggle>
