@@ -1,10 +1,10 @@
 import {useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {useRecoilState} from 'recoil';
+import {useRecoilState, useSetRecoilState} from 'recoil';
 import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
 import {Color, Guess, GuessRowProps} from '@/types';
-import {currentGameState} from '@/recoil-store';
+import {currentGameState, statsState} from '@/recoil-store';
 import {GuessResult} from '@/components/GuessResult';
 import {getResult} from '@/utils/gameUtils';
 import {DraggableList} from '@/components/DraggableList';
@@ -12,25 +12,52 @@ import {ColorButton} from './ColorButton';
 
 const GuessRow = ({guess, disabled, ...rest}: GuessRowProps) => {
   const [currentGame, setCurrentGame] = useRecoilState(currentGameState);
+  const setStats = useSetRecoilState(statsState);
   const {t} = useTranslation();
   const [activeGuess, setActiveGuess] = useState<Color[]>(
     disabled ? guess.combination : new Array(4).fill(null)
   );
 
   const handleGuess = () => {
+    const result = getResult(currentGame.combination, activeGuess);
+    const won = result.correct === 4;
+    const lost = !won && currentGame.guesses.length === currentGame.maxGuesses - 1;
     setCurrentGame((current) => {
       return {
         ...current,
         guesses: [
           {
-            round: currentGame.guesses.length + 1,
+            round: current.guesses.length + 1,
             combination: activeGuess,
-            result: getResult(currentGame.combination, activeGuess),
+            result: getResult(current.combination, activeGuess),
           },
           ...current.guesses,
         ],
+        active: lost || won ? false : true,
       };
     });
+    if (won) {
+      setStats((currentStats) => {
+        const clearTime = Math.ceil((Date.now() - currentGame.started) / 1000);
+        const fastest = currentStats.fastest
+          ? Math.min(clearTime, currentStats.fastest)
+          : clearTime;
+        const fastestHardmode = currentStats.fastestHardmode
+          ? Math.min(clearTime, currentStats.fastestHardmode)
+          : clearTime;
+        return {
+          ...currentStats,
+          won: currentStats.won + 1,
+          ...(!currentGame.hardMode && {fastest}),
+          ...(currentGame.hardMode && {fastestHardmode}),
+        };
+      });
+    } else if (lost) {
+      setStats((currentStats) => ({
+        ...currentStats,
+        lost: currentStats.lost + 1,
+      }));
+    }
   };
 
   return (

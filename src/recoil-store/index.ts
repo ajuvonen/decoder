@@ -1,6 +1,7 @@
 import {atom} from 'recoil';
 import {Game} from '@/types';
 import {localStorageEffect} from '@/utils/recoilUtils';
+import {createGame} from '@/utils/gameUtils';
 
 type Stats = {
   won: number;
@@ -17,12 +18,8 @@ type Settings = {
 export const currentGameState = atom<Game>({
   key: 'currentGame',
   default: {
+    ...createGame(false, Date.now()),
     active: false,
-    hardMode: false,
-    combination: [],
-    guesses: [],
-    maxGuesses: 0,
-    started: 0,
   },
   effects: [localStorageEffect('CURRENT_GAME')],
 });

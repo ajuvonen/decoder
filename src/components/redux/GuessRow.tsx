@@ -4,10 +4,12 @@ import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
 import {Color, Guess, GuessRowProps} from '@/types';
 import {GuessResult} from '@/components/GuessResult';
-import {addGuess} from '@/redux-store/gameSlice';
+import {addGuess, setInactive} from '@/redux-store/gameSlice';
 import {useDispatch, useSelector} from '@/hooks/reduxHooks';
 import {DraggableList} from '@/components/DraggableList';
 import {ColorButton} from './ColorButton';
+import {getResult} from '@/utils/gameUtils';
+import {incrementLost, incrementWon} from '@/redux-store/statsSlice';
 
 const GuessRow = ({guess, disabled, ...rest}: GuessRowProps) => {
   const currentGame = useSelector((state) => state.currentGame);
@@ -17,7 +19,22 @@ const GuessRow = ({guess, disabled, ...rest}: GuessRowProps) => {
     disabled ? guess.combination : new Array(4).fill(null)
   );
 
-  const handleGuess = () => dispatch(addGuess(activeGuess));
+  const handleGuess = () => {
+    const result = getResult(currentGame.combination, activeGuess);
+    const won = result.correct === 4;
+    const lost = !won && currentGame.guesses.length === currentGame.maxGuesses - 1;
+    dispatch(addGuess({combination: activeGuess, result}));
+    if (won) {
+      const clearTime = Math.ceil((Date.now() - currentGame.started) / 1000);
+      dispatch(incrementWon({clearTime, hardMode: currentGame.hardMode}));
+    } else if (lost) {
+      dispatch(incrementLost());
+    }
+
+    if (won || lost) {
+      dispatch(setInactive());
+    }
+  };
 
   return (
     <Stack

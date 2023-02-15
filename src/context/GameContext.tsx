@@ -1,6 +1,7 @@
 import React, {createContext, ReactNode, useContext} from 'react';
 import {useLocalStorage} from '@/hooks/localStorage';
 import {Game} from '@/types';
+import {createGame} from '@/utils/gameUtils';
 
 type GameContextProps = {
   children: ReactNode;
@@ -32,12 +33,8 @@ export const useGameContext = () => useContext(GameContext);
 
 export const GameProvider = ({children}: GameContextProps) => {
   const [currentGame, setCurrentGame] = useLocalStorage<Game>('CURRENT_GAME', {
+    ...createGame(false, Date.now()),
     active: false,
-    hardMode: false,
-    combination: [],
-    guesses: [],
-    maxGuesses: 0,
-    started: 0,
   });
 
   const [stats, setStats] = useLocalStorage<Stats>('STATS', {
