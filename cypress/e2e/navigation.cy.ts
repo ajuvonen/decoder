@@ -11,7 +11,7 @@ describe('Navigation', () => {
     it(`with ${buttonName} works`, () => {
       cy.getByTestId('version-selection').contains(buttonName).click()
         .location('pathname').should('contain', `${location}/play`)
-        .getByTestId('information-modal').getByTestId('continue-button').click()
+        .getByTestId('info-modal-continue-button').click()
         .getByTestId('stats-link').click()
         .location('pathname').should('contain', 'stats')
         .go('back')

@@ -82,9 +82,11 @@ export const GameBoard = () => {
           data-test={`guess-row-${index}`}
         />
       ))}
-      <InfoModal show={showModal} onCloseModal={() => setShowModal(false)}>
-        {modalMsg}
-      </InfoModal>
+      <InfoModal
+        show={showModal}
+        onClose={() => setShowModal(false)}
+        body={modalMsg}
+      />
     </div>
   );
 };

@@ -66,10 +66,9 @@ export default function Play() {
       </DropdownButton>
       <InfoModal
         show={!settings.instructionShown}
-        onCloseModal={handleCloseModal}
-      >
-        {t('play.infoModal')}
-      </InfoModal>
+        onClose={handleCloseModal}
+        body={t('play.infoModal')}
+      />
       <GameBoard />
       <ConfirmationModal
         show={showNewGameModal}

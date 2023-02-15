@@ -4,23 +4,23 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
 type ModalProps = {
-  children: ReactNode;
+  body: string;
   show: boolean;
-  onCloseModal: () => void;
+  onClose: () => void;
 };
 
-export const InfoModal = ({children, show, onCloseModal}: ModalProps) => {
+export const InfoModal = ({body, show, onClose}: ModalProps) => {
   const {t} = useTranslation();
   return (
-    <div aria-live="polite" aria-atomic="true" data-test="information-modal">
-      <Modal show={show}>
-        <Modal.Header closeButton>{t('general.information')}</Modal.Header>
-        <Modal.Body>{children}</Modal.Body>
+    <div aria-live="polite" aria-atomic="true">
+      <Modal show={show} data-test="info-modal">
+        <Modal.Header closeButton data-test="info-modal-header">{t('general.information')}</Modal.Header>
+        <Modal.Body data-test="info-modal-body">{body}</Modal.Body>
         <Modal.Footer>
           <Button
             variant="outline-primary"
-            onClick={() => onCloseModal()}
-            data-test="continue-button"
+            onClick={() => onClose()}
+            data-test="info-modal-continue-button"
           >
             {t('general.continue')}
           </Button>
