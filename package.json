@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "e2e": "npx cypress run"
+    "e2e": "npx cypress run",
+    "test": "npx cypress run --component"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.2",

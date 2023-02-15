@@ -3,7 +3,16 @@ orbs:
   node: circleci/node@5.1
   browser-tools: circleci/browser-tools@1.4.1
 jobs:
-  test:
+  build:
+    docker:
+      - image: cimg/node:18.14.0
+    steps:
+      - checkout
+      - node/install-packages
+      - run:
+          name: Build
+          command: npm run build
+  e2e-test:
     docker:
       - image: cimg/node:18.14.0-browsers
     steps:
@@ -14,21 +23,24 @@ jobs:
           command: npm run dev
           background: true
       - run:
-          name: Run test
+          name: Run e2e tests
           command: npm run e2e
-  build:
+  unit-test:
     docker:
-      - image: cimg/node:18.14.0
+      - image: cimg/node:18.14.0-browsers
     steps:
       - checkout
       - node/install-packages
       - run:
-          name: Build
-          command: npm run build
+          name: Run unit tests
+          command: npm test
 workflows:
   test_and_build:
     jobs:
-      - test
-      - build:
+      - build
+      - e2e-test:
           requires:
-            - test
+            - build
+      - unit-test:
+          requires:
+            - build
