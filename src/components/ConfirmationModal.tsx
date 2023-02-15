@@ -20,9 +20,9 @@ export const ConfirmationModal = ({
   const {t} = useTranslation();
 
   return (
-    <Modal show={show}>
-      <Modal.Header>{header}</Modal.Header>
-      <Modal.Body>{body}</Modal.Body>
+    <Modal show={show} data-test="confirmation-modal">
+      <Modal.Header data-test="confirmation-modal-header">{header}</Modal.Header>
+      <Modal.Body data-test="confirmation-modal-body">{body}</Modal.Body>
       <Modal.Footer>
         <Button
           variant="outline-secondary"
