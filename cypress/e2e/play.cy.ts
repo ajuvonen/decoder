@@ -1,6 +1,6 @@
 const testBasicPlay = (location:string) => () => {
   cy.visit(`/${location}/play`)
-    .getByTestId('information-modal').getByTestId('continue-button').click()
+    .getByTestId('info-modal-continue-button').click()
     .getByTestId('new-game-dropdown').click()
     .getByTestId('easy-mode-button').click()
     .getByTestId('active-guess-row').should('exist');
