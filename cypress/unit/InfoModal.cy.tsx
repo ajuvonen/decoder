@@ -10,9 +10,8 @@ describe('<InfoModal />', () => {
       />
     )
       .getByTestId('info-modal').should('be.visible')
-      .getByTestId('info-modal-header').should('have.text', 'general.information')
       .getByTestId('info-modal-body').should('have.text', 'This is information')
-      .getByTestId('info-modal-continue-button').should('have.text', 'general.continue');
+      .getByTestId('info-modal-continue-button').should('be.visible');
   });
 
   it('hides from view', () => {

@@ -1,3 +1,4 @@
+/* eslint-disable no-global-assign */
 /* eslint-disable @typescript-eslint/no-namespace */
 
 // ***********************************************************
@@ -22,6 +23,8 @@ import './commands';
 // require('./commands')
 
 import {mount} from 'cypress/react18';
+import {I18nextProvider} from 'react-i18next';
+import i18n from '@/i18n';
 
 import '@/css/bootstrap.min.css';
 
@@ -37,7 +40,16 @@ declare global {
   }
 }
 
-Cypress.Commands.add('mount', mount);
+Cypress.Commands.add('mount', (component, options) => {
+  i18n.changeLanguage('en');
+  return mount(
+    <I18nextProvider i18n={i18n}>{component}</I18nextProvider>,
+    options
+  );
+});
+
+process = process || {env: {}};
+process.env = process.env || {};
 
 // Example use:
 // cy.mount(<MyComponent />)
