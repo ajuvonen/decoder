@@ -3,7 +3,7 @@ orbs:
   node: circleci/node@5.1
   browser-tools: circleci/browser-tools@1.4.1
 jobs:
-  build:
+  lint:
     docker:
       - image: cimg/node:18.14.0
     steps:
