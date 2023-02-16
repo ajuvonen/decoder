@@ -27,12 +27,11 @@ export const LocalStorageSync = ({children}: LocalStorageSyncProps) => {
       const localStorageStats = loadLocalStorage<Stats>('STATS', {} as Stats);
       dispatch(refreshGameState(localStorageGame));
       dispatch(refreshStatsState(localStorageStats));
-      dispatch(setRefreshRequired(false));
     }
     return () => {
       dispatch(setRefreshRequired(true));
     };
-  }, []);
+  }, [dispatch, refreshRequired]);
 
   return <>{children}</>;
 };

@@ -20,7 +20,7 @@ export const GameBoard = () => {
       const combinationText = currentGame.combination.map(getColor).join(', ');
       setModalMsg(t('gameBoard.gameOver', {combinationText}));
     }
-  }, [currentGame.combination, currentGame.guesses, currentGame.maxGuesses]);
+  }, [currentGame.combination, currentGame.guesses, currentGame.maxGuesses, t]);
 
   useEffect(() => {
     if (modalMsg) {
