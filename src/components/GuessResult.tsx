@@ -30,14 +30,14 @@ const ResultBlock = styled.div`
   justify-content: space-around;
   align-items: center;
   font-size: 4rem;
-  border: 1px solid #2C3E50;
+  border: 1px solid #2c3e50;
   border-radius: 6px;
   margin-top: 1rem;
 
   :before {
     position: absolute;
     content: '';
-    border: 0.5px solid #2C3E50;
+    border: 0.5px solid #2c3e50;
     top: 0;
     bottom: 0;
     left: 50%;
@@ -48,7 +48,7 @@ const ResultBlock = styled.div`
     font-size: 1rem;
     position: absolute;
     top: 0;
-    border-bottom: 1px solid #2C3E50;
+    border-bottom: 1px solid #2c3e50;
     width: 100%;
     text-align: center;
     background: white;
@@ -63,14 +63,6 @@ const ResultBlock = styled.div`
     animation-direction: alternate;
     animation-timing-function: linear;
   }
-
-  > span:first-child {
-    color: green;
-  }
-
-  > span:last-child {
-    color: orange;
-  }
 `;
 
 export const GuessResult = ({guess, maxGuesses}: GuessResultProps) => {
@@ -80,8 +72,10 @@ export const GuessResult = ({guess, maxGuesses}: GuessResultProps) => {
       info={t('guessResult.info', {round: guess.round, maxGuesses})}
       className={classNames({win: guess.result.correct === 4})}
     >
-      <span title={t('guessResult.correct')}>{guess.result.correct}</span>
-      <span title={t('guessResult.semiCorrect')}>
+      <span style={{color: 'green'}} title={t('guessResult.correct')}>
+        {guess.result.correct}
+      </span>
+      <span style={{color: 'orange'}} title={t('guessResult.semiCorrect')}>
         {guess.result.semiCorrect}
       </span>
     </ResultBlock>

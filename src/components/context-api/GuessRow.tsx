@@ -27,16 +27,16 @@ const GuessRow = ({guess, disabled, ...rest}: GuessRowProps) => {
           {
             round: current.guesses.length + 1,
             combination: activeGuess,
-            result: getResult(current.combination, activeGuess),
+            result,
           },
           ...current.guesses,
         ],
-        active: lost || won ? false : true,
+        active: !(lost || won),
       };
     });
     if (won) {
+      const clearTime = Math.ceil((Date.now() - currentGame.started) / 1000);
       setStats((currentStats) => {
-        const clearTime = Math.ceil((Date.now() - currentGame.started) / 1000);
         const fastest = currentStats.fastest
           ? Math.min(clearTime, currentStats.fastest)
           : clearTime;

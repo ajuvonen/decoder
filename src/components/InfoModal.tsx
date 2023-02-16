@@ -1,15 +1,14 @@
-import {ReactNode} from 'react';
 import {useTranslation} from 'react-i18next';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
-type ModalProps = {
+type InfoModalProps = {
   body: string;
   show: boolean;
   onClose: () => void;
 };
 
-export const InfoModal = ({body, show, onClose}: ModalProps) => {
+export const InfoModal = ({body, show, onClose}: InfoModalProps) => {
   const {t} = useTranslation();
   return (
     <div aria-live="polite" aria-atomic="true">

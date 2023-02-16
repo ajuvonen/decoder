@@ -3,6 +3,7 @@ import {useTranslation} from 'react-i18next';
 import {useGameContext} from '@/context/GameContext';
 import Button from 'react-bootstrap/Button';
 import {ConfirmationModal} from '@/components/ConfirmationModal';
+import {getFastestTime} from '@/utils/gameUtils';
 
 export default function Stats() {
   const {stats, setStats} = useGameContext();
@@ -12,12 +13,6 @@ export default function Stats() {
     stats.won + stats.lost
       ? ((stats.won / (stats.won + stats.lost)) * 100).toFixed(1)
       : '0';
-
-  const getFastestTime = (totalSeconds: number) => {
-    const minutes = Math.floor(totalSeconds / 60);
-    const remainder = totalSeconds - minutes * 60;
-    return `${minutes}m ${remainder}s`;
-  };
 
   const handleReset = () => {
     setStats({
