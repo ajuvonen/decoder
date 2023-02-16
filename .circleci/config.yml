@@ -10,8 +10,8 @@ jobs:
       - checkout
       - node/install-packages
       - run:
-          name: Build
-          command: npm run build
+          name: Lint
+          command: npm run lint
   e2e-test:
     docker:
       - image: cimg/node:18.14.0-browsers
@@ -34,13 +34,30 @@ jobs:
       - run:
           name: Run unit tests
           command: npm test
+  build:
+    docker:
+      - image: cimg/node:18.14.0
+    steps:
+      - checkout
+      - node/install-packages
+      - run:
+          name: Build
+          command: npm run build
 workflows:
   test_and_build:
     jobs:
-      - build
+      - lint
       - e2e-test:
           requires:
-            - build
+            - lint
       - unit-test:
           requires:
-            - build
+            - lint
+      - build:
+          requires:
+            - e2e-test
+            - unit-test
+          filters:
+            branches:
+              only:
+                - master
