@@ -23,7 +23,7 @@ export const LanguageSelector = () => {
     document.documentElement.lang = i18n.language;
   }, [i18n.language]);
   return (
-    <div className="d-flex align-items-center pt-2 pb-2">
+    <div className="d-flex align-items-center pt-2 pb-2" data-test="language-selector">
       <Globe aria-hidden />
       {languages.map((language) => (
         <LanguageButton

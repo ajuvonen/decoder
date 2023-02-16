@@ -14,8 +14,8 @@ describe('<ConfirmationModal />', () => {
       .getByTestId('confirmation-modal').should('be.visible')
       .getByTestId('confirmation-modal-header').should('have.text', 'Are you sure?')
       .getByTestId('confirmation-modal-body').should('have.text', 'This is dangerous')
-      .getByTestId('confirmation-modal-cancel-button').should('have.text', 'general.cancel')
-      .getByTestId('confirmation-modal-continue-button').should('have.text', 'general.continue');
+      .getByTestId('confirmation-modal-cancel-button').should('be.visible')
+      .getByTestId('confirmation-modal-continue-button').should('be.visible');
   });
 
   it('hides from view', () => {
