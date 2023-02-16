@@ -16,14 +16,14 @@ const ColorToggle = styled.div`
   align-items: center;
   justify-content: center;
 
+  &:hover {
+    filter: opacity(85%);
+  }
+
   &.disabled {
     opacity: 80%;
     cursor: default;
     pointer-events: none;
-  }
-
-  &:not([disabled]):hover {
-    filter: opacity(85%);
   }
 
   &:after {

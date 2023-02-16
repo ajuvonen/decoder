@@ -1,5 +1,5 @@
 import {ComponentType, useState} from 'react';
-import {move} from 'ramda';
+import {move, update} from 'ramda';
 import Stack from 'react-bootstrap/Stack';
 import classNames from 'classnames';
 import styled from 'styled-components';
@@ -19,7 +19,7 @@ const DraggableItem = styled.div`
   &.target:before {
     content: '';
     position: absolute;
-    border: 2px solid #2C3E50;
+    border: 2px solid #2c3e50;
     border-radius: 4px;
     left: -10px;
     top: 10px;
@@ -29,7 +29,7 @@ const DraggableItem = styled.div`
   &.target:after {
     content: '';
     position: absolute;
-    border: 2px solid #2C3E50;
+    border: 2px solid #2c3e50;
     border-radius: 4px;
     right: -10px;
     top: 10px;
@@ -47,13 +47,8 @@ export const DraggableList = ({
   const [dragOverIndex, setDragOverIndex] = useState(0);
   const vertical = useWindowSize().width <= 1000;
 
-  const handleChangeColor = (index: number) => (color: Color) => {
-    setList((current) => [
-      ...current.slice(0, index),
-      color,
-      ...current.slice(index + 1),
-    ]);
-  };
+  const handleChangeColor = (index: number) => (color: Color) =>
+    setList((current) => update(index, color, current));
 
   const handleDragStart = (index: number) => {
     setDragIndex(index);
@@ -79,7 +74,7 @@ export const DraggableList = ({
               key={index}
               color={color}
               disabled
-              onChangeColor={handleChangeColor(index)}
+              onChangeColor={() => false}
             />
           ))
         : list.map((color, index) => (
@@ -92,8 +87,7 @@ export const DraggableList = ({
               draggable
               data-test={`draggable-item-${index}`}
               className={classNames({
-                'target':
-                  dragOverIndex === index && dragOverIndex !== dragIndex,
+                target: dragOverIndex === index && dragOverIndex !== dragIndex,
               })}
             >
               <ButtonComponent

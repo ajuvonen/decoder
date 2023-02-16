@@ -20,7 +20,6 @@ export const ColorButton = ({
         as={ColorToggle}
         role="button"
         color={color}
-        disabled={disabled}
         className={classNames({disabled})}
       >
         {colorName}

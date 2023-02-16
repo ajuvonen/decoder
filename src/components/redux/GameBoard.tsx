@@ -20,7 +20,7 @@ export const GameBoard = () => {
       const combinationText = currentGame.combination.map(getColor).join(', ');
       setModalMsg(t('gameBoard.gameOver', {combinationText}));
     }
-  }, [currentGame.guesses]);
+  }, [currentGame.combination, currentGame.guesses, currentGame.maxGuesses]);
 
   useEffect(() => {
     if (modalMsg) {
@@ -30,10 +30,7 @@ export const GameBoard = () => {
 
   return (
     <div className="mt-4 mb-5 w-100">
-      {currentGame.active &&
-        currentGame.guesses.length < currentGame.maxGuesses && (
-          <GuessRow data-test="active-guess-row" />
-        )}
+      {currentGame.active && <GuessRow data-test="active-guess-row" />}
       {currentGame.guesses.map((guess, index) => (
         <GuessRow
           key={guess.round}

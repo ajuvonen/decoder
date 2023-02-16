@@ -2,6 +2,17 @@ import {Color, Game, Result} from '../types';
 import i18next from '@/i18n';
 
 /**
+ * Get fastest time as string of minutes and seconds
+ * @param totalSeconds Time in seconds
+ * @returns {string} [minutes]m [seconds]s
+ */
+export const getFastestTime = (totalSeconds: number) => {
+  const minutes = Math.floor(totalSeconds / 60);
+  const remainder = totalSeconds - minutes * 60;
+  return `${minutes}m ${remainder}s`;
+};
+
+/**
  * Get localized color name
  * @param {Color} color Value to look up and translate
  * @returns {string} Localized value

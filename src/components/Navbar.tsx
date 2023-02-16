@@ -13,7 +13,7 @@ export const Navbar = () => {
   const [currentPath, setCurrentPath] = useState<string | undefined>('');
   const hasMenu = useWindowSize().width <= 575;
   useEffect(() => {
-    const routeCategory = (location.pathname.match(/\/[^\/]*\//) || [])[0];
+    const routeCategory = (location.pathname.match(/\/[^/]*\//) || [])[0];
     setCurrentPath(routeCategory);
   }, [location]);
   return (
