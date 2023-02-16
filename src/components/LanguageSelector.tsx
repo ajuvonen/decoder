@@ -18,11 +18,10 @@ export const LanguageSelector = () => {
   const languages = ['en', 'fi'];
   const setLanguage = (language: string) => {
     i18n.changeLanguage(language);
-    document.documentElement.lang = i18n.language;
   };
   useEffect(() => {
     document.documentElement.lang = i18n.language;
-  }, []);
+  }, [i18n.language]);
   return (
     <div className="d-flex align-items-center pt-2 pb-2">
       <Globe aria-hidden />
