@@ -24,6 +24,10 @@ import './commands';
 
 import {mount} from 'cypress/react18';
 import {I18nextProvider} from 'react-i18next';
+import {Provider} from 'react-redux';
+import {RecoilRoot} from 'recoil';
+import {store} from '@/redux-store/store';
+import {GameProvider} from '@/context/GameContext';
 import i18n from '@/i18n';
 
 import '@/css/bootstrap.min.css';
@@ -36,6 +40,9 @@ declare global {
   namespace Cypress {
     interface Chainable {
       mount: typeof mount;
+      contextMount: typeof mount;
+      recoilMount: typeof mount;
+      reduxMount: typeof mount;
     }
   }
 }
@@ -44,6 +51,36 @@ Cypress.Commands.add('mount', (component, options) => {
   i18n.changeLanguage('en');
   return mount(
     <I18nextProvider i18n={i18n}>{component}</I18nextProvider>,
+    options
+  );
+});
+
+Cypress.Commands.add('contextMount', (component, options) => {
+  i18n.changeLanguage('en');
+  return mount(
+    <GameProvider>
+      <I18nextProvider i18n={i18n}>{component}</I18nextProvider>
+    </GameProvider>,
+    options
+  );
+});
+
+Cypress.Commands.add('recoilMount', (component, options) => {
+  i18n.changeLanguage('en');
+  return mount(
+    <RecoilRoot>
+      <I18nextProvider i18n={i18n}>{component}</I18nextProvider>
+    </RecoilRoot>,
+    options
+  );
+});
+
+Cypress.Commands.add('reduxMount', (component, options) => {
+  i18n.changeLanguage('en');
+  return mount(
+    <Provider store={store}>
+      <I18nextProvider i18n={i18n}>{component}</I18nextProvider>
+    </Provider>,
     options
   );
 });
