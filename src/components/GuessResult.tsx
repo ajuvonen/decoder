@@ -71,11 +71,12 @@ export const GuessResult = ({guess, maxGuesses}: GuessResultProps) => {
     <ResultBlock
       info={t('guessResult.info', {round: guess.round, maxGuesses})}
       className={classNames({win: guess.result.correct === 4})}
+      data-test="guess-result"
     >
-      <span style={{color: 'green'}} title={t('guessResult.correct')}>
+      <span style={{color: 'green'}} title={t('guessResult.correct')} data-test="guess-result-correct">
         {guess.result.correct}
       </span>
-      <span style={{color: 'orange'}} title={t('guessResult.semiCorrect')}>
+      <span style={{color: 'orange'}} title={t('guessResult.semiCorrect')} data-test="guess-result-semicorrect">
         {guess.result.semiCorrect}
       </span>
     </ResultBlock>
