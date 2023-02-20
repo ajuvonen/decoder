@@ -26,7 +26,7 @@ import {mount} from 'cypress/react18';
 import {I18nextProvider} from 'react-i18next';
 import {Provider} from 'react-redux';
 import {RecoilRoot} from 'recoil';
-import {store} from '@/redux-store/store';
+import {getNewStore} from '@/redux-store/store';
 import {GameProvider} from '@/context/GameContext';
 import i18n from '@/i18n';
 
@@ -77,6 +77,7 @@ Cypress.Commands.add('recoilMount', (component, options) => {
 
 Cypress.Commands.add('reduxMount', (component, options) => {
   i18n.changeLanguage('en');
+  const store = getNewStore();
   return mount(
     <Provider store={store}>
       <I18nextProvider i18n={i18n}>{component}</I18nextProvider>
