@@ -1,7 +1,7 @@
 import {ReactNode, useEffect} from 'react';
 import {setRefreshRequired} from '@/redux-store/settingsSlice';
 import {setCurrentGame} from '@/redux-store/gameSlice';
-import {refreshStatsState} from '@/redux-store/statsSlice';
+import {setStats} from '@/redux-store/statsSlice';
 import {useDispatch, useSelector} from '@/hooks/reduxHooks';
 import {loadLocalStorage} from '@/utils/localStorageUtils';
 import {Game, Stats} from '@/types';
@@ -26,7 +26,7 @@ export const LocalStorageSync = ({children}: LocalStorageSyncProps) => {
       );
       const localStorageStats = loadLocalStorage<Stats>('STATS', {} as Stats);
       dispatch(setCurrentGame(localStorageGame));
-      dispatch(refreshStatsState(localStorageStats));
+      dispatch(setStats(localStorageStats));
     }
     return () => {
       dispatch(setRefreshRequired(true));

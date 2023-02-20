@@ -38,7 +38,7 @@ const statsSlice = createSlice({
     incrementLost: (state) => {
       state.lost = state.lost + 1;
     },
-    refreshStatsState: (state, {payload}: PayloadAction<Stats>) => {
+    setStats: (state, {payload}: PayloadAction<Stats>) => {
       return payload;
     },
     resetStats: () => ({
@@ -50,7 +50,7 @@ const statsSlice = createSlice({
   },
 });
 
-export const {incrementLost, incrementWon, refreshStatsState, resetStats} =
+export const {incrementLost, incrementWon, setStats, resetStats} =
   statsSlice.actions;
 
 export const statsReducer = statsSlice.reducer;
