@@ -37,11 +37,11 @@ export type Stats = {
 };
 
 export enum Color {
-  Red = '#ee4035',
-  Orange = '#f37021',
-  Yellow = '#fcb711',
-  Green = '#7bc043',
-  Blue = '#0089d0',
+  Red = '#EE4035',
+  Orange = '#F37021',
+  Yellow = '#FCB711',
+  Green = '#7BC043',
+  Blue = '#0089D0',
   Black = '#2C3E50',
-  Purple = '#6460aa',
+  Purple = '#6460AA',
 }
