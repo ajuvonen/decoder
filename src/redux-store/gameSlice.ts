@@ -31,13 +31,10 @@ const gameSlice = createSlice({
     setInactive: (state) => {
       state.active = false;
     },
-    refreshGameState: (state, {payload}: PayloadAction<Game>) => {
-      return payload;
-    },
   },
 });
 
-export const {addGuess, setInactive, setCurrentGame, refreshGameState} =
+export const {addGuess, setInactive, setCurrentGame} =
   gameSlice.actions;
 
 export const gameReducer = gameSlice.reducer;
