@@ -3,11 +3,6 @@ import {Color, Game, Result} from '@/types';
 import {createGame} from '@/utils/gameUtils';
 import {loadLocalStorage} from '@/utils/localStorageUtils';
 
-type NewGamePayload = {
-  hardMode: boolean;
-  started: number;
-};
-
 type GuessPayload = {
   combination: Color[];
   result: Result;
@@ -22,9 +17,11 @@ const gameSlice = createSlice({
   name: 'currentGame',
   initialState,
   reducers: {
-    createNewGame: (state, {payload}: PayloadAction<NewGamePayload>) =>
-      createGame(payload.hardMode, payload.started),
-    addGuess: (state, {payload: {combination, result}}: PayloadAction<GuessPayload>) => {
+    setCurrentGame: (state, {payload}: PayloadAction<Game>) => payload,
+    addGuess: (
+      state,
+      {payload: {combination, result}}: PayloadAction<GuessPayload>
+    ) => {
       state.guesses.unshift({
         round: state.guesses.length + 1,
         combination,
@@ -40,7 +37,7 @@ const gameSlice = createSlice({
   },
 });
 
-export const {addGuess, setInactive, createNewGame, refreshGameState} =
+export const {addGuess, setInactive, setCurrentGame, refreshGameState} =
   gameSlice.actions;
 
 export const gameReducer = gameSlice.reducer;

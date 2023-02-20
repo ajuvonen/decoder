@@ -5,10 +5,11 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import {GameBoard} from '@/components/redux/GameBoard';
 import {InfoModal} from '@/components/InfoModal';
 import {incrementLost} from '@/redux-store/statsSlice';
-import {createNewGame} from '@/redux-store/gameSlice';
+import {setCurrentGame} from '@/redux-store/gameSlice';
 import {setInstructionShown} from '@/redux-store/settingsSlice';
 import {useDispatch, useSelector} from '@/hooks/reduxHooks';
 import {ConfirmationModal} from '@/components/ConfirmationModal';
+import {createGame} from '@/utils/gameUtils';
 
 export default function Play() {
   const currentGame = useSelector((state) => state.currentGame);
@@ -24,12 +25,7 @@ export default function Play() {
       dispatch(incrementLost());
     }
 
-    dispatch(
-      createNewGame({
-        hardMode: newGameHardMode.current,
-        started: Date.now(),
-      })
-    );
+    dispatch(setCurrentGame(createGame(newGameHardMode.current, Date.now())));
   };
 
   const confirmCreateGame = (hardMode: boolean) => {
