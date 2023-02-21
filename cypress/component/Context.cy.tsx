@@ -10,7 +10,7 @@ const TestComponent = () => {
       active: true,
       hardMode: true,
       maxGuesses: 12,
-      started: new Date('2023/01/31').getTime(),
+      started: new Date('2023/01/31 0:00:00 GMT+0200').getTime() ,
       combination: [Color.Black, Color.Black, Color.Blue, Color.Red],
       guesses: [
         {
