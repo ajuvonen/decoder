@@ -26,9 +26,9 @@ export const Navbar = () => {
         </NavbarBS.Brand>
         {!!currentPath && (
           <>
-            <NavbarBS.Toggle aria-controls="basic-navbar-nav" />
+            <NavbarBS.Toggle aria-controls="basic-navbar-nav" data-test="navbar-toggler" />
             <NavbarBS.Collapse id="basic-navbar-nav">
-              <Nav>
+              <Nav data-test="navbar-links">
                 <Nav.Link to={`${currentPath}play`} as={NavLink} data-test="play-link">
                   {t('navbar.play')}
                 </Nav.Link>
