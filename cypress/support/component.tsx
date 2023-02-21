@@ -1,5 +1,14 @@
 /* eslint-disable no-global-assign */
 /* eslint-disable @typescript-eslint/no-namespace */
+import {I18nextProvider} from 'react-i18next';
+import {Provider} from 'react-redux';
+import {RecoilRoot} from 'recoil';
+import {mount} from 'cypress/react18';
+import {getNewStore} from '@/redux-store/store';
+import {GameProvider} from '@/context/GameContext';
+import i18n from '@/i18n';
+
+import '@/css/bootstrap.min.css';
 
 // ***********************************************************
 // This example support/component.ts is processed and
@@ -18,19 +27,6 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands';
-
-// Alternatively you can use CommonJS syntax:
-// require('./commands')
-
-import {mount} from 'cypress/react18';
-import {I18nextProvider} from 'react-i18next';
-import {Provider} from 'react-redux';
-import {RecoilRoot} from 'recoil';
-import {getNewStore} from '@/redux-store/store';
-import {GameProvider} from '@/context/GameContext';
-import i18n from '@/i18n';
-
-import '@/css/bootstrap.min.css';
 
 // Augment the Cypress namespace to include type definitions for
 // your custom command.
@@ -88,6 +84,3 @@ Cypress.Commands.add('reduxMount', (component, options) => {
 
 process = process || {env: {}};
 process.env = process.env || {};
-
-// Example use:
-// cy.mount(<MyComponent />)
