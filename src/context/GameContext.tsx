@@ -1,6 +1,6 @@
 import React, {createContext, ReactNode, useContext} from 'react';
 import {useLocalStorage} from '@/hooks/localStorage';
-import {Game} from '@/types';
+import {Game, Settings, Stats} from '@/types';
 import {createGame} from '@/utils/gameUtils';
 
 type GameContextProps = {
@@ -14,17 +14,6 @@ type GameContext = {
   setStats: React.Dispatch<React.SetStateAction<Stats>>;
   settings: Settings;
   setSettings: React.Dispatch<React.SetStateAction<Settings>>;
-};
-
-type Stats = {
-  won: number;
-  lost: number;
-  fastest: number;
-  fastestHardMode: number;
-};
-
-type Settings = {
-  instructionShown: boolean;
 };
 
 const GameContext = createContext({} as GameContext);

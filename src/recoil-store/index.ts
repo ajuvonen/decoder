@@ -1,18 +1,7 @@
 import {atom} from 'recoil';
-import {Game} from '@/types';
+import {Game, Stats, Settings} from '@/types';
 import {localStorageEffect} from '@/utils/recoilUtils';
 import {createGame} from '@/utils/gameUtils';
-
-type Stats = {
-  won: number;
-  lost: number;
-  fastest: number;
-  fastestHardMode: number;
-};
-
-type Settings = {
-  instructionShown: boolean;
-};
 
 // Atom for current game
 export const currentGameState = atom<Game>({
