@@ -36,6 +36,10 @@ export type Stats = {
   fastestHardMode: number;
 };
 
+export type Settings = {
+  instructionShown: boolean;
+};
+
 export enum Color {
   Red = '#EE4035',
   Orange = '#F37021',

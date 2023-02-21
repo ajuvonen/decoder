@@ -1,12 +1,12 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {loadLocalStorage} from '@/utils/localStorageUtils';
+import {Settings} from '@/types';
 
-type Settings = {
-  instructionShown: boolean;
+type ReduxSettings = {
   refreshRequired: boolean;
-};
+} & Settings;
 
-const initialState = loadLocalStorage<Settings>('SETTINGS', {
+const initialState = loadLocalStorage<ReduxSettings>('SETTINGS', {
   instructionShown: false,
   refreshRequired: false,
 });
