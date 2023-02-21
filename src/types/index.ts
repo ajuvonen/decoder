@@ -33,7 +33,7 @@ export type Stats = {
   won: number;
   lost: number;
   fastest: number;
-  fastestHardmode: number;
+  fastestHardMode: number;
 };
 
 export enum Color {

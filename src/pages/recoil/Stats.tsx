@@ -18,7 +18,7 @@ export default function Stats() {
   const handleReset = () => {
     setStats({
       fastest: 0,
-      fastestHardmode: 0,
+      fastestHardMode: 0,
       lost: 0,
       won: 0,
     });
@@ -37,10 +37,10 @@ export default function Stats() {
           {t('stats.fastestTimeEasy', {time: getFastestTime(stats.fastest)})}
         </p>
       )}
-      {!!stats.fastestHardmode && (
+      {!!stats.fastestHardMode && (
         <p className="fs-3">
           {t('stats.fastestTimeDifficult', {
-            time: getFastestTime(stats.fastestHardmode),
+            time: getFastestTime(stats.fastestHardMode),
           })}
         </p>
       )}

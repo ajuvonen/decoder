@@ -20,7 +20,7 @@ type Stats = {
   won: number;
   lost: number;
   fastest: number;
-  fastestHardmode: number;
+  fastestHardMode: number;
 };
 
 type Settings = {
@@ -41,7 +41,7 @@ export const GameProvider = ({children}: GameContextProps) => {
     won: 0,
     lost: 0,
     fastest: 0,
-    fastestHardmode: 0,
+    fastestHardMode: 0,
   });
 
   const [settings, setSettings] = useLocalStorage<Settings>('SETTINGS', {
