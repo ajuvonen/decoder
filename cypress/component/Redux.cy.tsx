@@ -2,8 +2,8 @@ import {addGuess, setCurrentGame, setInactive} from '@/redux-store/gameSlice';
 import {getNewStore, store} from '@/redux-store/store';
 import {createGame} from '@/utils/gameUtils';
 import {Color} from '@/types';
-import { setInstructionShown, setRefreshRequired } from '@/redux-store/settingsSlice';
-import { incrementLost, incrementWon } from '@/redux-store/statsSlice';
+import {setInstructionShown, setRefreshRequired} from '@/redux-store/settingsSlice';
+import {incrementLost, incrementWon} from '@/redux-store/statsSlice';
 
 const initialState = {
   currentGame: {
@@ -95,10 +95,12 @@ describe('Redux', () => {
   });
 
   it('increments won stat without fastest time', () => {
-    testStore.dispatch(incrementWon({
-      clearTime: 0,
-      hardMode: false,
-    }));
+    testStore.dispatch(
+      incrementWon({
+        clearTime: 0,
+        hardMode: false,
+      })
+    );
     cy.wrap(testStore.getState().stats).should('eql', {
       won: 1,
       lost: 0,
@@ -108,18 +110,24 @@ describe('Redux', () => {
   });
 
   it('increments won stat with fastest normal time', () => {
-    testStore.dispatch(incrementWon({
-      clearTime: 300,
-      hardMode: false,
-    }));
-    testStore.dispatch(incrementWon({
-      clearTime: 290,
-      hardMode: false,
-    }));
-    testStore.dispatch(incrementWon({
-      clearTime: 295,
-      hardMode: false,
-    }));
+    testStore.dispatch(
+      incrementWon({
+        clearTime: 300,
+        hardMode: false,
+      })
+    );
+    testStore.dispatch(
+      incrementWon({
+        clearTime: 290,
+        hardMode: false,
+      })
+    );
+    testStore.dispatch(
+      incrementWon({
+        clearTime: 295,
+        hardMode: false,
+      })
+    );
     cy.wrap(testStore.getState().stats).should('eql', {
       won: 3,
       lost: 0,
@@ -129,18 +137,24 @@ describe('Redux', () => {
   });
 
   it('increments won stat with fastest hard time', () => {
-    testStore.dispatch(incrementWon({
-      clearTime: 300,
-      hardMode: true,
-    }));
-    testStore.dispatch(incrementWon({
-      clearTime: 290,
-      hardMode: true,
-    }));
-    testStore.dispatch(incrementWon({
-      clearTime: 295,
-      hardMode: true,
-    }));
+    testStore.dispatch(
+      incrementWon({
+        clearTime: 300,
+        hardMode: true,
+      })
+    );
+    testStore.dispatch(
+      incrementWon({
+        clearTime: 290,
+        hardMode: true,
+      })
+    );
+    testStore.dispatch(
+      incrementWon({
+        clearTime: 295,
+        hardMode: true,
+      })
+    );
     cy.wrap(testStore.getState().stats).should('eql', {
       won: 3,
       lost: 0,
@@ -148,7 +162,6 @@ describe('Redux', () => {
       fastestHardMode: 290,
     });
   });
-
 
   it('increments lost stat', () => {
     testStore.dispatch(incrementLost());
