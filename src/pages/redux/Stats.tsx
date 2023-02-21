@@ -34,10 +34,10 @@ export default function Stats() {
           {t('stats.fastestTimeEasy', {time: getFastestTime(stats.fastest)})}
         </p>
       )}
-      {!!stats.fastestHardmode && (
+      {!!stats.fastestHardMode && (
         <p className="fs-3">
           {t('stats.fastestTimeDifficult', {
-            time: getFastestTime(stats.fastestHardmode),
+            time: getFastestTime(stats.fastestHardMode),
           })}
         </p>
       )}

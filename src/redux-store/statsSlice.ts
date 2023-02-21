@@ -11,7 +11,7 @@ const initialState = loadLocalStorage<Stats>('STATS', {
   won: 0,
   lost: 0,
   fastest: 0,
-  fastestHardmode: 0,
+  fastestHardMode: 0,
 });
 
 const statsSlice = createSlice({
@@ -25,14 +25,14 @@ const statsSlice = createSlice({
       const fastest = state.fastest
         ? Math.min(clearTime, state.fastest)
         : clearTime;
-      const fastestHardmode = state.fastestHardmode
-        ? Math.min(clearTime, state.fastestHardmode)
+      const fastestHardMode = state.fastestHardMode
+        ? Math.min(clearTime, state.fastestHardMode)
         : clearTime;
       return {
         ...state,
         won: state.won + 1,
         ...(!hardMode && {fastest}),
-        ...(hardMode && {fastestHardmode}),
+        ...(hardMode && {fastestHardMode}),
       };
     },
     incrementLost: (state) => {
@@ -45,7 +45,7 @@ const statsSlice = createSlice({
       won: 0,
       lost: 0,
       fastest: 0,
-      fastestHardmode: 0,
+      fastestHardMode: 0,
     }),
   },
 });

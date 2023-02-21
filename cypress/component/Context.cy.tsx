@@ -24,7 +24,7 @@ const TestComponent = () => {
       won: 1,
       lost: 2,
       fastest: 123,
-      fastestHardmode: 456,
+      fastestHardMode: 456,
     });
     setSettings({
       instructionShown: true,
@@ -51,7 +51,7 @@ const TestComponent = () => {
         <div data-test="stats-won">{stats.won}</div>
         <div data-test="stats-lost">{stats.lost}</div>
         <div data-test="stats-fastest">{stats.fastest}</div>
-        <div data-test="stats-fastest-hard-mode">{stats.fastestHardmode}</div>
+        <div data-test="stats-fastest-hard-mode">{stats.fastestHardMode}</div>
       </div>
       <div>
         <div data-test="settings-instruction-shown">{settings.instructionShown.toString()}</div>
