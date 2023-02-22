@@ -1,10 +1,13 @@
-import {useGameContext} from '@/context/GameContext';
+import {currentGameState, settingsState, statsState} from '@/recoil-store';
 import {Color} from '@/types';
 import {useEffect} from 'react';
+import {useRecoilState} from 'recoil';
 
 const TestComponent = () => {
-  const {currentGame, setCurrentGame, stats, setStats, settings, setSettings} =
-    useGameContext();
+  const [currentGame, setCurrentGame] = useRecoilState(currentGameState);
+  const [stats, setStats] = useRecoilState(statsState);
+  const [settings, setSettings] = useRecoilState(settingsState);
+
   useEffect(() => {
     setCurrentGame({
       active: true,
@@ -66,7 +69,7 @@ describe('Context', () => {
   });
 
   it('sets and returns values', () => {
-    cy.contextMount(<TestComponent />)
+    cy.recoilMount(<TestComponent />)
       .getByTestId('current-game-active').should('have.text', 'true')
       .getByTestId('current-game-hard-mode').should('have.text', 'true')
       .getByTestId('current-game-max-guesses').should('have.text', '12')
