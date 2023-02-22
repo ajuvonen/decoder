@@ -26,8 +26,12 @@ const initialState = {
 
 let testStore: typeof store;
 describe('Redux', () => {
+  after(() => {
+    cy.clearAllLocalStorage();
+  });
+
   beforeEach(() => {
-    testStore = getNewStore(true);
+    testStore = getNewStore();
     chai.config.truncateThreshold = 0;
   });
 

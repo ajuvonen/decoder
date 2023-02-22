@@ -7,7 +7,7 @@ import {statsReducer} from './statsSlice';
 import {settingsReducer} from './settingsSlice';
 import {saveLocalStorage} from '@/utils/localStorageUtils';
 
-export const getNewStore = (disableLocalStorage = false) => {
+export const getNewStore = () => {
   const newStore = configureStore({
     reducer: {
       currentGame: gameReducer,
@@ -16,34 +16,32 @@ export const getNewStore = (disableLocalStorage = false) => {
     },
   });
 
-  if (!disableLocalStorage) {
-    newStore.subscribe(
-      watch(
-        newStore.getState,
-        'currentGame',
-        deepEqual
-      )((newValue) => saveLocalStorage('CURRENT_GAME', newValue))
-    );
+  newStore.subscribe(
+    watch(
+      newStore.getState,
+      'currentGame',
+      deepEqual
+    )((newValue) => saveLocalStorage('CURRENT_GAME', newValue))
+  );
 
-    newStore.subscribe(
-      watch(
-        newStore.getState,
-        'stats',
-        deepEqual
-      )((newValue) => saveLocalStorage('STATS', newValue))
-    );
+  newStore.subscribe(
+    watch(
+      newStore.getState,
+      'stats',
+      deepEqual
+    )((newValue) => saveLocalStorage('STATS', newValue))
+  );
 
-    // Omit Redux-only settings
-    newStore.subscribe(
-      watch(
-        newStore.getState,
-        'settings',
-        deepEqual
-      )((newValue) =>
-        saveLocalStorage('SETTINGS', omit(['refreshRequired'], newValue))
-      )
-    );
-  }
+  // Omit Redux-only settings
+  newStore.subscribe(
+    watch(
+      newStore.getState,
+      'settings',
+      deepEqual
+    )((newValue) =>
+      saveLocalStorage('SETTINGS', omit(['refreshRequired'], newValue))
+    )
+  );
 
   return newStore;
 };
