@@ -16,6 +16,10 @@ type ColorButtonTestProps = {
   {name: 'Redux', ColorButton: ReduxColorButton, mountFn: cy.reduxMount},
 ].forEach(({name, ColorButton, mountFn}: ColorButtonTestProps) => {
   describe(`${name} <ColorButton/>`, () => {
+    after(() => {
+      cy.clearAllLocalStorage();
+    });
+
     Object.entries(Color).forEach(([key, value]) => {
       it(`renders ${key}`, () => {
         mountFn(
