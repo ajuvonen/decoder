@@ -16,6 +16,10 @@ type GuessRowTestProps = {
   {name: 'Redux', GuessRow: ReduxGuessRow, mountFn: cy.reduxMount},
 ].forEach(({name, GuessRow, mountFn}: GuessRowTestProps) => {
   describe(`${name} <GuessRow/>`, () => {
+    after(() => {
+      cy.clearAllLocalStorage();
+    });
+  
     it('renders editable', () => {
       mountFn(
         <GuessRow
