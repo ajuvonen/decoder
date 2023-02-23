@@ -40,6 +40,10 @@ export type Settings = {
   instructionShown: boolean;
 };
 
+export type ReduxSettings = {
+  refreshRequired: boolean;
+} & Settings;
+
 export enum Color {
   Red = '#EE4035',
   Orange = '#F37021',

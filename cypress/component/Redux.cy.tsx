@@ -1,9 +1,14 @@
 import {addGuess, setCurrentGame, setInactive} from '@/redux-store/gameSlice';
-import {getNewStore, store} from '@/redux-store/store';
+import {getNewStore} from '@/redux-store/store';
 import {createGame} from '@/utils/gameUtils';
-import {Color} from '@/types';
-import {setInstructionShown, setRefreshRequired} from '@/redux-store/settingsSlice';
+import {Color, Game, ReduxSettings, Stats} from '@/types';
+import {
+  setInstructionShown,
+  setRefreshRequired,
+} from '@/redux-store/settingsSlice';
 import {incrementLost, incrementWon} from '@/redux-store/statsSlice';
+import {ToolkitStore} from '@reduxjs/toolkit/dist/configureStore';
+import {AnyAction, ThunkMiddleware} from '@reduxjs/toolkit';
 
 const initialState = {
   currentGame: {
@@ -24,15 +29,33 @@ const initialState = {
   },
 };
 
-let testStore: typeof store;
+let testStore: ToolkitStore<
+  {
+    currentGame: Game;
+    stats: Stats;
+    settings: ReduxSettings;
+  },
+  AnyAction,
+  [
+    ThunkMiddleware<{
+      currentGame: Game;
+      stats: Stats;
+      settings: ReduxSettings;
+    }>
+  ]
+>;
+
 describe('Redux', () => {
+  before(() => {
+    chai.config.truncateThreshold = 0;
+  });
+
   after(() => {
     cy.clearAllLocalStorage();
   });
 
   beforeEach(() => {
     testStore = getNewStore();
-    chai.config.truncateThreshold = 0;
   });
 
   it('initializes store', () => {
@@ -71,30 +94,59 @@ describe('Redux', () => {
       },
     };
     testStore.dispatch(addGuess(guess));
-    cy.wrap(testStore.getState().currentGame.guesses).should('eql', [
-      {round: 1, ...guess},
-    ]);
+    cy.wrap(testStore.getState()).should('eql', {
+      ...initialState,
+      currentGame: {
+        ...initialState.currentGame,
+        combination: testStore.getState().currentGame.combination,
+        started: testStore.getState().currentGame.started,
+        guesses: [{round: 1, ...guess}],
+      },
+    });
   });
 
   it('sets game to inactive state', () => {
-    testStore.dispatch(setCurrentGame(createGame(false, Date.now())));
+    const game = createGame(false, Date.now());
+    testStore.dispatch(setCurrentGame(game));
     testStore.dispatch(setInactive());
-    cy.wrap(testStore.getState().currentGame.active).should('eq', false);
+    cy.wrap(testStore.getState()).should('eql', {
+      ...initialState,
+      currentGame: {
+        ...game,
+        active: false,
+      },
+    });
   });
 
   it('sets instruction as shown', () => {
     testStore.dispatch(setInstructionShown());
-    cy.wrap(testStore.getState().settings).should('eql', {
-      instructionShown: true,
-      refreshRequired: false,
+    cy.wrap(testStore.getState()).should('eql', {
+      ...initialState,
+      currentGame: {
+        ...initialState.currentGame,
+        combination: testStore.getState().currentGame.combination,
+        started: testStore.getState().currentGame.started,
+      },
+      settings: {
+        ...initialState.settings,
+        instructionShown: true,
+      },
     });
   });
 
   it('sets refresh required', () => {
     testStore.dispatch(setRefreshRequired(true));
-    cy.wrap(testStore.getState().settings).should('eql', {
-      instructionShown: false,
-      refreshRequired: true,
+    cy.wrap(testStore.getState()).should('eql', {
+      ...initialState,
+      currentGame: {
+        ...initialState.currentGame,
+        combination: testStore.getState().currentGame.combination,
+        started: testStore.getState().currentGame.started,
+      },
+      settings: {
+        ...initialState.settings,
+        refreshRequired: true,
+      },
     });
   });
 
@@ -105,11 +157,17 @@ describe('Redux', () => {
         hardMode: false,
       })
     );
-    cy.wrap(testStore.getState().stats).should('eql', {
-      won: 1,
-      lost: 0,
-      fastest: 0,
-      fastestHardMode: 0,
+    cy.wrap(testStore.getState()).should('eql', {
+      ...initialState,
+      currentGame: {
+        ...initialState.currentGame,
+        combination: testStore.getState().currentGame.combination,
+        started: testStore.getState().currentGame.started,
+      },
+      stats: {
+        ...initialState.stats,
+        won: 1,
+      },
     });
   });
 
@@ -132,11 +190,18 @@ describe('Redux', () => {
         hardMode: false,
       })
     );
-    cy.wrap(testStore.getState().stats).should('eql', {
-      won: 3,
-      lost: 0,
-      fastest: 290,
-      fastestHardMode: 0,
+    cy.wrap(testStore.getState()).should('eql', {
+      ...initialState,
+      currentGame: {
+        ...initialState.currentGame,
+        combination: testStore.getState().currentGame.combination,
+        started: testStore.getState().currentGame.started,
+      },
+      stats: {
+        ...initialState.stats,
+        won: 3,
+        fastest: 290,
+      },
     });
   });
 
@@ -159,21 +224,34 @@ describe('Redux', () => {
         hardMode: true,
       })
     );
-    cy.wrap(testStore.getState().stats).should('eql', {
-      won: 3,
-      lost: 0,
-      fastest: 0,
-      fastestHardMode: 290,
+    cy.wrap(testStore.getState()).should('eql', {
+      ...initialState,
+      currentGame: {
+        ...initialState.currentGame,
+        combination: testStore.getState().currentGame.combination,
+        started: testStore.getState().currentGame.started,
+      },
+      stats: {
+        ...initialState.stats,
+        won: 3,
+        fastestHardMode: 290,
+      },
     });
   });
 
   it('increments lost stat', () => {
     testStore.dispatch(incrementLost());
-    cy.wrap(testStore.getState().stats).should('eql', {
-      won: 0,
-      lost: 1,
-      fastest: 0,
-      fastestHardMode: 0,
+    cy.wrap(testStore.getState()).should('eql', {
+      ...initialState,
+      currentGame: {
+        ...initialState.currentGame,
+        combination: testStore.getState().currentGame.combination,
+        started: testStore.getState().currentGame.started,
+      },
+      stats: {
+        ...initialState.stats,
+        lost: 1,
+      },
     });
   });
 });
