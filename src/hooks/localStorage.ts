@@ -2,8 +2,8 @@ import {useEffect, useState} from 'react';
 
 /**
  * Persist a state value to local storage
- * @param key Local storage key
- * @param initialValue Value or function that returns the initial value
+ * @param {string} key Local storage key
+ * @param {*} initialValue Value or function that returns the initial value
  * @returns {[<T>, React.Dispatch<React.SetStateAction<T>>]} Value and value setter
  */
 export const useLocalStorage = <T>(
