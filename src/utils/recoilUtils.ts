@@ -2,7 +2,7 @@ import {AtomEffect} from 'recoil';
 
 /**
  * Effect that persists atom data to local storage on change
- * @param key Local storage key
+ * @param {string} key Local storage key
  * @returns {AtomEffect<T>} LocalStorage effect for Recoil atom
  */
 export const localStorageEffect: <T>(key: string) => AtomEffect<T> =
