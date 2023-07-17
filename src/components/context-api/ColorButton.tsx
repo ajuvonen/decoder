@@ -20,7 +20,7 @@ export const ColorButton = ({
         as={ColorToggle}
         role="button"
         color={color}
-        className={classNames({disabled})}
+        className={classNames({disabled}, 'tektur')}
       >
         {colorName}
       </Dropdown.Toggle>
@@ -30,6 +30,7 @@ export const ColorButton = ({
             .slice(0, currentGame.hardMode ? undefined : 5)
             .map(([key, value]) => (
               <ColorDropdownItem
+                className="tektur"
                 color={value}
                 key={key}
                 onClick={() => onChangeColor(value)}

@@ -20,19 +20,30 @@ export const Navbar = () => {
     <NavbarBS bg="light" expand="sm">
       <Container fluid="lg">
         <NavbarBS.Brand>
-          <Nav.Link to="/" as={NavLink}>
+          <Nav.Link className="tektur" to="/" as={NavLink}>
             Decoder
           </Nav.Link>
         </NavbarBS.Brand>
         {!!currentPath && (
           <>
-            <NavbarBS.Toggle aria-controls="basic-navbar-nav" data-test="navbar-toggler" />
+            <NavbarBS.Toggle
+              aria-controls="basic-navbar-nav"
+              data-test="navbar-toggler"
+            />
             <NavbarBS.Collapse id="basic-navbar-nav">
               <Nav data-test="navbar-links">
-                <Nav.Link to={`${currentPath}play`} as={NavLink} data-test="play-link">
+                <Nav.Link
+                  to={`${currentPath}play`}
+                  as={NavLink}
+                  data-test="play-link"
+                >
                   {t('navbar.play')}
                 </Nav.Link>
-                <Nav.Link to={`${currentPath}stats`} as={NavLink} data-test="stats-link">
+                <Nav.Link
+                  to={`${currentPath}stats`}
+                  as={NavLink}
+                  data-test="stats-link"
+                >
                   {t('navbar.stats')}
                 </Nav.Link>
                 {hasMenu && <LanguageSelector />}

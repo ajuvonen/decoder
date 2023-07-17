@@ -13,7 +13,13 @@ export const InfoModal = ({body, show, onClose}: InfoModalProps) => {
   return (
     <div aria-live="polite" aria-atomic="true">
       <Modal show={show} data-test="info-modal">
-        <Modal.Header closeButton data-test="info-modal-header">{t('general.information')}</Modal.Header>
+        <Modal.Header
+          className="tektur"
+          closeButton
+          data-test="info-modal-header"
+        >
+          {t('general.information')}
+        </Modal.Header>
         <Modal.Body data-test="info-modal-body">{body}</Modal.Body>
         <Modal.Footer>
           <Button
