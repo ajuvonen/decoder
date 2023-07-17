@@ -75,6 +75,7 @@ const GuessRow = ({guess, disabled, ...rest}: GuessRowProps) => {
         <GuessResult maxGuesses={currentGame.maxGuesses} guess={guess} />
       ) : (
         <Button
+          className="tektur"
           disabled={activeGuess.some((color) => color === null)}
           variant="outline-primary"
           style={{

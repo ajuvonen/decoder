@@ -28,17 +28,17 @@ export default function Stats() {
   return (
     <>
       <h1 className="mt-5">{t('stats.title')}</h1>
-      <p className="mt-3 fs-3">
+      <p className="mt-3 fs-3 tektur">
         {t('stats.wonGames', {won: stats.won, percentage})}
       </p>
-      <p className="fs-3">{t('stats.lostGames', {lost: stats.lost})}</p>
+      <p className="fs-3 tektur">{t('stats.lostGames', {lost: stats.lost})}</p>
       {!!stats.fastest && (
-        <p className="fs-3">
+        <p className="fs-3 tektur">
           {t('stats.fastestTimeEasy', {time: getFastestTime(stats.fastest)})}
         </p>
       )}
       {!!stats.fastestHardMode && (
-        <p className="fs-3">
+        <p className="fs-3 tektur">
           {t('stats.fastestTimeDifficult', {
             time: getFastestTime(stats.fastestHardMode),
           })}
