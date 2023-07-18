@@ -13,7 +13,8 @@
     },
     "continue": "Continue",
     "information": "Information",
-    "localeName": "English"
+    "localeName": "English",
+    "loading": "Loading"
   },
   "gameBoard": {
     "congratulations": "Congratulations! You won the game! Start a new game from the dropdown menu.",

@@ -13,7 +13,8 @@
     },
     "continue": "Jatka",
     "information": "Huomautus",
-    "localeName": "Suomi"
+    "localeName": "Suomi",
+    "loading": "Ladataan"
   },
   "gameBoard": {
     "congratulations": "Onnittelut! Voitit pelin! Aloita uusi peli pudotusvalikosta.",
