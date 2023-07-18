@@ -3,6 +3,7 @@ import {Routes, Route, BrowserRouter} from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import {Navbar} from '@/components/Navbar';
 import {Home} from '@/pages/Home';
+import {LoadingScreen} from '@/components/LoadingScreen';
 
 export const RecoilHome = React.lazy(() => import('./pages/recoil/Home'));
 export const RecoilPlay = React.lazy(() => import('./pages/recoil/Play'));
@@ -21,7 +22,7 @@ export const App = () => {
     <BrowserRouter>
       <Navbar />
       <Container className="d-flex flex-column align-items-center">
-        <Suspense fallback="Loading">
+        <Suspense fallback={<LoadingScreen />}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="recoil" element={<RecoilHome />}>
