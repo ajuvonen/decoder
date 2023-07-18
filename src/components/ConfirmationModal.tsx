@@ -22,7 +22,7 @@ export const ConfirmationModal = ({
   return (
     <div aria-live="polite" aria-atomic="true">
       <Modal show={show} data-test="confirmation-modal">
-        <Modal.Header className="tektur" data-test="confirmation-modal-header">
+        <Modal.Header data-test="confirmation-modal-header">
           {header}
         </Modal.Header>
         <Modal.Body data-test="confirmation-modal-body">{body}</Modal.Body>
