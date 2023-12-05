@@ -57,7 +57,3 @@ workflows:
           requires:
             - e2e-test
             - unit-test
-          filters:
-            branches:
-              only:
-                - master
