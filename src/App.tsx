@@ -5,14 +5,14 @@ import {Navbar} from '@/components/Navbar';
 import {Home} from '@/pages/Home';
 import {LoadingScreen} from '@/components/LoadingScreen';
 
-export const RecoilHome = React.lazy(() => import('./pages/recoil/Home'));
-export const RecoilPlay = React.lazy(() => import('./pages/recoil/Play'));
-export const RecoilStats = React.lazy(() => import('./pages/recoil/Stats'));
-export const ReduxHome = React.lazy(() => import('./pages/redux/Home'));
-export const ReduxPlay = React.lazy(() => import('./pages/redux/Play'));
-export const ReduxStats = React.lazy(() => import('./pages/redux/Stats'));
-export const ContextHome = React.lazy(() => import('./pages/context-api/Home'));
-export const ContextPlay = React.lazy(() => import('./pages/context-api/Play'));
+export const RecoilHome = React.lazy(() => import('@/pages/recoil/Home'));
+export const RecoilPlay = React.lazy(() => import('@/pages/recoil/Play'));
+export const RecoilStats = React.lazy(() => import('@/pages/recoil/Stats'));
+export const ReduxHome = React.lazy(() => import('@/pages/redux/Home'));
+export const ReduxPlay = React.lazy(() => import('@/pages/redux/Play'));
+export const ReduxStats = React.lazy(() => import('@/pages/redux/Stats'));
+export const ContextHome = React.lazy(() => import('@/pages/context-api/Home'));
+export const ContextPlay = React.lazy(() => import('@/pages/context-api/Play'));
 export const ContextStats = React.lazy(
   () => import('./pages/context-api/Stats')
 );
