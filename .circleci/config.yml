@@ -32,7 +32,7 @@ jobs:
       - node/install-packages
       - run:
           name: Run unit tests
-          command: npm test:unit
+          command: npm run test:unit
 workflows:
   test_and_build:
     jobs:
