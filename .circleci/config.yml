@@ -1,7 +1,7 @@
 version: 2.1
 orbs:
-  node: circleci/node@5.1
-  browser-tools: circleci/browser-tools@1.4.1
+  node: circleci/node@5.2.0
+  browser-tools: circleci/browser-tools@1.4.6
 jobs:
   lint:
     docker:
@@ -19,9 +19,8 @@ jobs:
       - checkout
       - node/install-packages
       - run:
-          name: Run app in the background
-          command: npm run dev
-          background: true
+          name: Build app
+          command: npm run build
       - run:
           name: Run e2e tests
           command: npm run test:e2e
@@ -34,15 +33,6 @@ jobs:
       - run:
           name: Run unit tests
           command: npm test:unit
-  build:
-    docker:
-      - image: cimg/node:20.11.0
-    steps:
-      - checkout
-      - node/install-packages
-      - run:
-          name: Build
-          command: npm run build
 workflows:
   test_and_build:
     jobs:
@@ -53,7 +43,3 @@ workflows:
       - unit-test:
           requires:
             - lint
-      - build:
-          requires:
-            - e2e-test
-            - unit-test
