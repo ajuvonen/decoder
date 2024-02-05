@@ -17,7 +17,7 @@ const gameSlice = createSlice({
   name: 'currentGame',
   initialState,
   reducers: {
-    setCurrentGame: (state, {payload}: PayloadAction<Game>) => payload,
+    setCurrentGame: (_state, {payload}: PayloadAction<Game>) => payload,
     addGuess: (
       state,
       {payload: {combination, result}}: PayloadAction<GuessPayload>

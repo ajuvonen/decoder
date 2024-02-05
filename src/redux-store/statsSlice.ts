@@ -38,7 +38,7 @@ const statsSlice = createSlice({
     incrementLost: (state) => {
       state.lost = state.lost + 1;
     },
-    setStats: (state, {payload}: PayloadAction<Stats>) => {
+    setStats: (_state, {payload}: PayloadAction<Stats>) => {
       return payload;
     },
     resetStats: () => ({
