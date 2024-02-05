@@ -5,7 +5,7 @@ orbs:
 jobs:
   lint:
     docker:
-      - image: cimg/node:18.14.0
+      - image: cimg/node:20.11.0
     steps:
       - checkout
       - node/install-packages
@@ -14,7 +14,7 @@ jobs:
           command: npm run lint
   e2e-test:
     docker:
-      - image: cimg/node:18.14.0-browsers
+      - image: cimg/node:20.11.0-browsers
     steps:
       - checkout
       - node/install-packages
@@ -24,19 +24,19 @@ jobs:
           background: true
       - run:
           name: Run e2e tests
-          command: npm run e2e
+          command: npm run test:e2e
   unit-test:
     docker:
-      - image: cimg/node:18.14.0-browsers
+      - image: cimg/node:20.11.0-browsers
     steps:
       - checkout
       - node/install-packages
       - run:
           name: Run unit tests
-          command: npm test
+          command: npm test:unit
   build:
     docker:
-      - image: cimg/node:18.14.0
+      - image: cimg/node:20.11.0
     steps:
       - checkout
       - node/install-packages
