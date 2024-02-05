@@ -1,14 +1,12 @@
 import {addGuess, setCurrentGame, setInactive} from '@/redux-store/gameSlice';
 import {getNewStore} from '@/redux-store/store';
 import {createGame} from '@/utils/gameUtils';
-import {Color, Game, ReduxSettings, Stats} from '@/types';
+import {Color} from '@/types';
 import {
   setInstructionShown,
   setRefreshRequired,
 } from '@/redux-store/settingsSlice';
 import {incrementLost, incrementWon} from '@/redux-store/statsSlice';
-import {ToolkitStore} from '@reduxjs/toolkit/dist/configureStore';
-import {AnyAction, ThunkMiddleware} from '@reduxjs/toolkit';
 
 const initialState = {
   currentGame: {
@@ -29,21 +27,7 @@ const initialState = {
   },
 };
 
-let testStore: ToolkitStore<
-  {
-    currentGame: Game;
-    stats: Stats;
-    settings: ReduxSettings;
-  },
-  AnyAction,
-  [
-    ThunkMiddleware<{
-      currentGame: Game;
-      stats: Stats;
-      settings: ReduxSettings;
-    }>
-  ]
->;
+let testStore: ReturnType<typeof getNewStore>;
 
 describe('Redux', () => {
   before(() => {
