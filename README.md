@@ -16,8 +16,8 @@ Node 20+
 
 ## Running e2e tests
 
-1. Complete steps 1-3 from above
-2. In a separate terminal, run `npm run e2e`
+1. Complete steps 1-2 from above
+2. Run `npm run test:e2e`
 
 ## Running unit tests
 
