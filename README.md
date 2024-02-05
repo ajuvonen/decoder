@@ -5,21 +5,21 @@ The project uses a CircleCI pipeline for CI.
 
 ## Requirements
 
-Node 16+
+Node 20+
 
 ## Running the project
 
-1. Run `npm run build`
-2. Run `npm preview`
-3. Navigate to address shown on the terminal
+1. Run `npm install`
+2. Run `npm run build`
+3. Run `npm preview`
+4. Navigate to address shown on the terminal
 
 ## Running e2e tests
 
-1. Run `npm install`
-2. Run `npm run dev`
-3. In a separate terminal, run `npm run e2e`
+1. Complete steps 1-3 from above
+2. In a separate terminal, run `npm run e2e`
 
 ## Running unit tests
 
 1. Run `npm install`
-2. Run `npm test`
+2. Run `npm run test:unit`
