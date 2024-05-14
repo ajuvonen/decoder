@@ -1,3 +1,4 @@
+import {FC} from 'react';
 import {useTranslation} from 'react-i18next';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
@@ -10,13 +11,13 @@ type ConfirmationModalProps = {
   onContinue: () => void;
 };
 
-export const ConfirmationModal = ({
+export const ConfirmationModal: FC<ConfirmationModalProps> = ({
   show,
   header,
   body,
   onClose,
   onContinue,
-}: ConfirmationModalProps) => {
+}) => {
   const {t} = useTranslation();
 
   return (

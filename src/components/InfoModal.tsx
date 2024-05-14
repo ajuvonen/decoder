@@ -1,3 +1,4 @@
+import {FC} from 'react';
 import {useTranslation} from 'react-i18next';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
@@ -8,7 +9,7 @@ type InfoModalProps = {
   onClose: () => void;
 };
 
-export const InfoModal = ({body, show, onClose}: InfoModalProps) => {
+export const InfoModal: FC<InfoModalProps> = ({body, show, onClose}) => {
   const {t} = useTranslation();
   return (
     <div aria-live="polite" aria-atomic="true">

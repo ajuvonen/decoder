@@ -1,3 +1,4 @@
+import {FC} from 'react';
 import {useTranslation} from 'react-i18next';
 import styled, {keyframes} from 'styled-components';
 import classNames from 'classnames';
@@ -65,7 +66,7 @@ const ResultBlock = styled.div`
   }
 `;
 
-export const GuessResult = ({guess, maxGuesses}: GuessResultProps) => {
+export const GuessResult: FC<GuessResultProps> = ({guess, maxGuesses}) => {
   const {t} = useTranslation();
   return (
     <ResultBlock
@@ -73,10 +74,18 @@ export const GuessResult = ({guess, maxGuesses}: GuessResultProps) => {
       className={classNames({win: guess.result.correct === 4})}
       data-test="guess-result"
     >
-      <span style={{color: 'green'}} title={t('guessResult.correct')} data-test="guess-result-correct">
+      <span
+        style={{color: 'green'}}
+        title={t('guessResult.correct')}
+        data-test="guess-result-correct"
+      >
         {guess.result.correct}
       </span>
-      <span style={{color: 'orange'}} title={t('guessResult.semiCorrect')} data-test="guess-result-semicorrect">
+      <span
+        style={{color: 'orange'}}
+        title={t('guessResult.semiCorrect')}
+        data-test="guess-result-semicorrect"
+      >
         {guess.result.semiCorrect}
       </span>
     </ResultBlock>

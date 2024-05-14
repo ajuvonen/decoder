@@ -1,11 +1,11 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useState, FC} from 'react';
 import {useTranslation} from 'react-i18next';
 import {GuessRow} from './GuessRow';
 import {InfoModal} from '@/components/InfoModal';
 import {useSelector} from '@/hooks/reduxHooks';
 import {getColor} from '@/utils/gameUtils';
 
-export const GameBoard = () => {
+export const GameBoard: FC = () => {
   const currentGame = useSelector((state) => state.currentGame);
   const [showModal, setShowModal] = useState(false);
   const [modalMsg, setModalMsg] = useState('');

@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, FC} from 'react';
 import {useTranslation} from 'react-i18next';
 import {useRecoilState, useSetRecoilState} from 'recoil';
 import Stack from 'react-bootstrap/Stack';
@@ -12,7 +12,7 @@ import {ColorButton} from './ColorButton';
 
 const defaultGuess = {} as Guess;
 
-const GuessRow = ({guess = defaultGuess, disabled = false, ...rest}: GuessRowProps) => {
+const GuessRow: FC<GuessRowProps> = ({guess = defaultGuess, disabled = false, ...rest}) => {
   const [currentGame, setCurrentGame] = useRecoilState(currentGameState);
   const setStats = useSetRecoilState(statsState);
   const {t} = useTranslation();

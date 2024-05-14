@@ -1,11 +1,11 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useState, FC} from 'react';
 import {useTranslation} from 'react-i18next';
 import {useGameContext} from '@/context/GameContext';
 import {GuessRow} from '@/components/context-api/GuessRow';
 import {InfoModal} from '@/components/InfoModal';
 import {getColor} from '@/utils/gameUtils';
 
-export const GameBoard = () => {
+export const GameBoard: FC = () => {
   const {currentGame} = useGameContext();
   const [showModal, setShowModal] = useState(false);
   const [modalMsg, setModalMsg] = useState('');
