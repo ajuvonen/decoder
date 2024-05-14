@@ -1,4 +1,4 @@
-import {ReactNode, useEffect} from 'react';
+import {ReactNode, useEffect, FC} from 'react';
 import {setRefreshRequired} from '@/redux-store/settingsSlice';
 import {setCurrentGame} from '@/redux-store/gameSlice';
 import {setStats} from '@/redux-store/statsSlice';
@@ -10,7 +10,7 @@ type LocalStorageSyncProps = {
   children: ReactNode;
 };
 
-export const LocalStorageSync = ({children}: LocalStorageSyncProps) => {
+export const LocalStorageSync: FC<LocalStorageSyncProps> = ({children}) => {
   const refreshRequired = useSelector(
     (state) => state.settings.refreshRequired
   );

@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, FC} from 'react';
 import {useTranslation} from 'react-i18next';
 import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
@@ -13,7 +13,7 @@ import {incrementLost, incrementWon} from '@/redux-store/statsSlice';
 
 const defaultGuess = {} as Guess;
 
-const GuessRow = ({guess = defaultGuess, disabled = false, ...rest}: GuessRowProps) => {
+const GuessRow: FC<GuessRowProps> = ({guess = defaultGuess, disabled = false, ...rest}) => {
   const currentGame = useSelector((state) => state.currentGame);
   const dispatch = useDispatch();
   const {t} = useTranslation();

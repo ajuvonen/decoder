@@ -1,4 +1,4 @@
-import {ComponentType, useState} from 'react';
+import {ComponentType, useState, FC} from 'react';
 import {move, update} from 'ramda';
 import Stack from 'react-bootstrap/Stack';
 import classNames from 'classnames';
@@ -37,12 +37,12 @@ const DraggableItem = styled.div`
   }
 `;
 
-export const DraggableList = ({
+export const DraggableList: FC<DraggableListProps> = ({
   list,
   setList,
   ButtonComponent,
   disabled,
-}: DraggableListProps) => {
+}) => {
   const [dragIndex, setDragIndex] = useState(0);
   const [dragOverIndex, setDragOverIndex] = useState(0);
   const vertical = useWindowSize().width <= 1000;

@@ -1,13 +1,13 @@
+import {useState, useEffect, FC} from 'react';
 import {useTranslation} from 'react-i18next';
 import {NavLink, useLocation} from 'react-router-dom';
-import {useState, useEffect} from 'react';
 import NavbarBS from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import {LanguageSelector} from './LanguageSelector';
 import {useWindowSize} from '@/hooks/windowSize';
 
-export const Navbar = () => {
+export const Navbar: FC = () => {
   const location = useLocation();
   const {t} = useTranslation();
   const [currentPath, setCurrentPath] = useState<string | undefined>('');
