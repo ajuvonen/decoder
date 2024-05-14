@@ -1,12 +1,12 @@
-import {Color, Game, Result} from '@/types';
+import {Color, Game, Guess, Result} from '@/types';
 import i18next from '@/i18n';
 
 /**
- * Get fastest time as string of minutes and seconds
+ * Format fastest time to a string of minutes and seconds
  * @param {number} totalSeconds Time in seconds
  * @returns {string} [minutes]m [seconds]s
  */
-export const getFastestTime = (totalSeconds: number) => {
+export const formatFastestTime = (totalSeconds: number) => {
   const minutes = Math.floor(totalSeconds / 60);
   const remainder = totalSeconds - minutes * 60;
   return `${minutes}m ${remainder}s`;
@@ -73,4 +73,30 @@ export const getResult = (
     correct,
     semiCorrect,
   };
+};
+
+/**
+ * Get the game status
+ * @param guesses {Guess[]} Current guesses
+ * @param maxGuesses {number} Max guesses in this game
+ * @returns {[boolean, boolean]} [won, lost]
+ */
+export const getGameStatus = (
+  guesses: Guess[],
+  maxGuesses: number
+): [boolean, boolean] => {
+  const won = guesses.some(({result}) => result.correct === 4);
+  const lost = guesses.length === maxGuesses;
+  return [won, lost];
+};
+
+/**
+ * Get fastest time, either current record or clear time
+ * @param currentRecord {number} Current record in seconds
+ * @param startTime  {number} Current game start time in milliseconds
+ * @returns {number} Faster of the two, or clear time in case current record was 0
+ */
+export const getFastestTime = (currentRecord: number, startTime: number) => {
+  const clearTime = Math.ceil((Date.now() - startTime) / 1000);
+  return currentRecord ? Math.min(currentRecord, clearTime) : clearTime;
 };

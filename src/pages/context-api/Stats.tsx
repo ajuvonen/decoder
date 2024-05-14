@@ -3,7 +3,7 @@ import {useTranslation} from 'react-i18next';
 import {useGameContext} from '@/context/GameContext';
 import Button from 'react-bootstrap/Button';
 import {ConfirmationModal} from '@/components/ConfirmationModal';
-import {getFastestTime} from '@/utils/gameUtils';
+import {formatFastestTime} from '@/utils/gameUtils';
 
 export default function Stats() {
   const {stats, setStats} = useGameContext();
@@ -33,13 +33,13 @@ export default function Stats() {
       <p className="fs-3 tektur">{t('stats.lostGames', {lost: stats.lost})}</p>
       {!!stats.fastest && (
         <p className="fs-3 tektur">
-          {t('stats.fastestTimeEasy', {time: getFastestTime(stats.fastest)})}
+          {t('stats.fastestTimeEasy', {time: formatFastestTime(stats.fastest)})}
         </p>
       )}
       {!!stats.fastestHardMode && (
         <p className="fs-3 tektur">
           {t('stats.fastestTimeDifficult', {
-            time: getFastestTime(stats.fastestHardMode),
+            time: formatFastestTime(stats.fastestHardMode),
           })}
         </p>
       )}

@@ -12,7 +12,7 @@ import {ColorButton} from './ColorButton';
 const defaultGuess = {} as Guess;
 
 const GuessRow: FC<GuessRowProps> = ({guess = defaultGuess, disabled = false, ...rest}) => {
-  const {currentGame, setCurrentGame, setStats} = useGameContext();
+  const {currentGame, setCurrentGame} = useGameContext();
   const {t} = useTranslation();
   const [activeGuess, setActiveGuess] = useState<Color[]>(
     disabled ? guess.combination : new Array(4).fill(null)
@@ -20,8 +20,6 @@ const GuessRow: FC<GuessRowProps> = ({guess = defaultGuess, disabled = false, ..
 
   const handleGuess = () => {
     const result = getResult(currentGame.combination, activeGuess);
-    const won = result.correct === 4;
-    const lost = !won && currentGame.guesses.length === currentGame.maxGuesses - 1;
     setCurrentGame((current) => {
       return {
         ...current,
@@ -33,31 +31,8 @@ const GuessRow: FC<GuessRowProps> = ({guess = defaultGuess, disabled = false, ..
           },
           ...current.guesses,
         ],
-        active: !(lost || won),
       };
     });
-    if (won) {
-      const clearTime = Math.ceil((Date.now() - currentGame.started) / 1000);
-      setStats((currentStats) => {
-        const fastest = currentStats.fastest
-          ? Math.min(clearTime, currentStats.fastest)
-          : clearTime;
-        const fastestHardMode = currentStats.fastestHardMode
-          ? Math.min(clearTime, currentStats.fastestHardMode)
-          : clearTime;
-        return {
-          ...currentStats,
-          won: currentStats.won + 1,
-          ...(!currentGame.hardMode && {fastest}),
-          ...(currentGame.hardMode && {fastestHardMode}),
-        };
-      });
-    } else if (lost) {
-      setStats((currentStats) => ({
-        ...currentStats,
-        lost: currentStats.lost + 1,
-      }));
-    }
   };
 
   return (
