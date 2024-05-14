@@ -25,7 +25,7 @@ export const getColor = (color: Color) => {
 /**
  * Create a new game
  * @param {boolean} hardMode Set to true to create a harder version of the game
- * @param {number} started Date.now() when the game started
+ * @param {number} started Date.getTime() when the game started
  * @returns {Game} New game with default properties
  */
 export const createGame = (hardMode: boolean, started: number): Game => {
@@ -47,7 +47,7 @@ export const createGame = (hardMode: boolean, started: number): Game => {
 
 /**
  * Compare a guess to a combination and return correct and semi-correct values
- * @param {Color[]} combination Secret combination
+ * @param {Color[]} secretCombination Secret combination
  * @param {Color[]} guessCombination Guess to verify
  * @returns {Result} Result from the guess
  */
