@@ -10,7 +10,9 @@ import {getResult} from '@/utils/gameUtils';
 import {DraggableList} from '@/components/DraggableList';
 import {ColorButton} from './ColorButton';
 
-const GuessRow = ({guess, disabled, ...rest}: GuessRowProps) => {
+const defaultGuess = {} as Guess;
+
+const GuessRow = ({guess = defaultGuess, disabled = false, ...rest}: GuessRowProps) => {
   const [currentGame, setCurrentGame] = useRecoilState(currentGameState);
   const setStats = useSetRecoilState(statsState);
   const {t} = useTranslation();
@@ -94,11 +96,6 @@ const GuessRow = ({guess, disabled, ...rest}: GuessRowProps) => {
       )}
     </Stack>
   );
-};
-
-GuessRow.defaultProps = {
-  guess: {} as Guess,
-  disabled: false,
 };
 
 export {GuessRow};

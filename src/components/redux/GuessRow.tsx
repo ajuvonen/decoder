@@ -11,7 +11,9 @@ import {ColorButton} from './ColorButton';
 import {getResult} from '@/utils/gameUtils';
 import {incrementLost, incrementWon} from '@/redux-store/statsSlice';
 
-const GuessRow = ({guess, disabled, ...rest}: GuessRowProps) => {
+const defaultGuess = {} as Guess;
+
+const GuessRow = ({guess = defaultGuess, disabled = false, ...rest}: GuessRowProps) => {
   const currentGame = useSelector((state) => state.currentGame);
   const dispatch = useDispatch();
   const {t} = useTranslation();
@@ -70,11 +72,6 @@ const GuessRow = ({guess, disabled, ...rest}: GuessRowProps) => {
       )}
     </Stack>
   );
-};
-
-GuessRow.defaultProps = {
-  guess: {} as Guess,
-  disabled: false,
 };
 
 export {GuessRow};

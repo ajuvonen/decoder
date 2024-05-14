@@ -25,8 +25,8 @@ export type ColorButtonProps = {
 };
 
 export type GuessRowProps = {
-  guess: Guess;
-  disabled: boolean;
+  guess?: Guess;
+  disabled?: boolean;
 };
 
 export type Stats = {
