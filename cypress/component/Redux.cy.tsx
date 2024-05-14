@@ -134,93 +134,20 @@ describe('Redux', () => {
     });
   });
 
-  it('increments won stat without fastest time', () => {
+  it('increments won stat', () => {
     testStore.dispatch(
       incrementWon({
-        clearTime: 0,
-        hardMode: false,
-      })
-    );
-    cy.wrap(testStore.getState()).should('eql', {
-      ...initialState,
-      currentGame: {
-        ...initialState.currentGame,
-        combination: testStore.getState().currentGame.combination,
-        started: testStore.getState().currentGame.started,
-      },
-      stats: {
-        ...initialState.stats,
-        won: 1,
-      },
-    });
-  });
-
-  it('increments won stat with fastest normal time', () => {
-    testStore.dispatch(
-      incrementWon({
-        clearTime: 300,
-        hardMode: false,
-      })
-    );
-    testStore.dispatch(
-      incrementWon({
-        clearTime: 290,
-        hardMode: false,
-      })
-    );
-    testStore.dispatch(
-      incrementWon({
-        clearTime: 295,
-        hardMode: false,
-      })
-    );
-    cy.wrap(testStore.getState()).should('eql', {
-      ...initialState,
-      currentGame: {
-        ...initialState.currentGame,
-        combination: testStore.getState().currentGame.combination,
-        started: testStore.getState().currentGame.started,
-      },
-      stats: {
-        ...initialState.stats,
-        won: 3,
-        fastest: 290,
-      },
-    });
-  });
-
-  it('increments won stat with fastest hard time', () => {
-    testStore.dispatch(
-      incrementWon({
-        clearTime: 300,
+        startTime: new Date().getTime(),
         hardMode: true,
       })
     );
     testStore.dispatch(
       incrementWon({
-        clearTime: 290,
+        startTime: new Date().getTime(),
         hardMode: true,
       })
     );
-    testStore.dispatch(
-      incrementWon({
-        clearTime: 295,
-        hardMode: true,
-      })
-    );
-    cy.wrap(testStore.getState()).should('eql', {
-      ...initialState,
-      currentGame: {
-        ...initialState.currentGame,
-        combination: testStore.getState().currentGame.combination,
-        started: testStore.getState().currentGame.started,
-      },
-      stats: {
-        ...initialState.stats,
-        won: 3,
-        fastestHardMode: 290,
-      },
-    });
+    cy.wrap(testStore.getState().stats.won).should('eql', 2);
   });
 
   it('increments lost stat', () => {

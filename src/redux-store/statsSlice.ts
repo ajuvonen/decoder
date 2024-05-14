@@ -1,9 +1,10 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {loadLocalStorage} from '@/utils/localStorageUtils';
 import {Stats} from '@/types';
+import {getFastestTime} from '@/utils/gameUtils';
 
 type FastestTimePayload = {
-  clearTime: number;
+  startTime: number;
   hardMode: boolean;
 };
 
@@ -20,19 +21,17 @@ const statsSlice = createSlice({
   reducers: {
     incrementWon: (
       state,
-      {payload: {hardMode, clearTime}}: PayloadAction<FastestTimePayload>
+      {payload: {hardMode, startTime}}: PayloadAction<FastestTimePayload>
     ) => {
-      const fastest = state.fastest
-        ? Math.min(clearTime, state.fastest)
-        : clearTime;
-      const fastestHardMode = state.fastestHardMode
-        ? Math.min(clearTime, state.fastestHardMode)
-        : clearTime;
+      const record = getFastestTime(
+        hardMode ? state.fastestHardMode : state.fastest,
+        startTime,
+      );
       return {
         ...state,
         won: state.won + 1,
-        ...(!hardMode && {fastest}),
-        ...(hardMode && {fastestHardMode}),
+        ...(!hardMode && {fastest: record}),
+        ...(hardMode && {fastestHardMode: record}),
       };
     },
     incrementLost: (state) => {

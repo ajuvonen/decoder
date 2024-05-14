@@ -1,26 +1,50 @@
 import {useEffect, useState, FC} from 'react';
 import {useTranslation} from 'react-i18next';
-import {GuessRow} from './GuessRow';
+import {incrementLost, incrementWon} from '@/redux-store/statsSlice';
+import {setInactive} from '@/redux-store/gameSlice';
+import {useDispatch, useSelector} from '@/hooks/reduxHooks';
+import {getColor, getGameStatus} from '@/utils/gameUtils';
 import {InfoModal} from '@/components/InfoModal';
-import {useSelector} from '@/hooks/reduxHooks';
-import {getColor} from '@/utils/gameUtils';
+import {GuessRow} from './GuessRow';
 
 export const GameBoard: FC = () => {
+  const dispatch = useDispatch();
   const currentGame = useSelector((state) => state.currentGame);
   const [showModal, setShowModal] = useState(false);
   const [modalMsg, setModalMsg] = useState('');
   const {t} = useTranslation();
 
   useEffect(() => {
-    const won = currentGame.guesses.some(({result}) => result.correct === 4);
-    const lost = currentGame.guesses.length === currentGame.maxGuesses;
-    if (won) {
-      setModalMsg(t('gameBoard.congratulations'));
-    } else if (lost) {
-      const combinationText = currentGame.combination.map(getColor).join(', ');
-      setModalMsg(t('gameBoard.gameOver', {combinationText}));
+    if (currentGame.active) {
+      const [won, lost] = getGameStatus(
+        currentGame.guesses,
+        currentGame.maxGuesses
+      );
+      if (won) {
+        dispatch(incrementWon({startTime: currentGame.started, hardMode: currentGame.hardMode}));
+        setModalMsg(t('gameBoard.congratulations'));
+      } else if (lost) {
+        dispatch(incrementLost());
+        const combinationText = currentGame.combination
+          .map(getColor)
+          .join(', ');
+        setModalMsg(t('gameBoard.gameOver', {combinationText}));
+      }
+
+      if (won || lost) {
+        dispatch(setInactive());
+      }
     }
-  }, [currentGame.combination, currentGame.guesses, currentGame.maxGuesses, t]);
+  }, [
+    currentGame.active,
+    currentGame.started,
+    currentGame.hardMode,
+    currentGame.combination,
+    currentGame.guesses,
+    currentGame.maxGuesses,
+    dispatch,
+    t,
+  ]);
 
   useEffect(() => {
     if (modalMsg) {

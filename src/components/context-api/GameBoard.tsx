@@ -3,30 +3,60 @@ import {useTranslation} from 'react-i18next';
 import {useGameContext} from '@/context/GameContext';
 import {GuessRow} from '@/components/context-api/GuessRow';
 import {InfoModal} from '@/components/InfoModal';
-import {getColor} from '@/utils/gameUtils';
+import {getColor, getFastestTime, getGameStatus} from '@/utils/gameUtils';
 
 export const GameBoard: FC = () => {
-  const {currentGame} = useGameContext();
-  const [showModal, setShowModal] = useState(false);
+  const {currentGame, setStats, setCurrentGame} = useGameContext();
   const [modalMsg, setModalMsg] = useState('');
   const {t} = useTranslation();
 
   useEffect(() => {
-    const won = currentGame.guesses.some(({result}) => result.correct === 4);
-    const lost = currentGame.guesses.length === currentGame.maxGuesses;
-    if (won) {
-      setModalMsg(t('gameBoard.congratulations'));
-    } else if (lost) {
-      const combinationText = currentGame.combination.map(getColor).join(', ');
-      setModalMsg(t('gameBoard.gameOver', {combinationText}));
+    if (currentGame.active) {
+      const [won, lost] = getGameStatus(
+        currentGame.guesses,
+        currentGame.maxGuesses
+      );
+      if (won) {
+        setStats((currentStats) => {
+          const record = getFastestTime(
+            currentGame.hardMode
+              ? currentStats.fastestHardMode
+              : currentStats.fastest,
+            currentGame.started,
+          );
+          return {
+            ...currentStats,
+            won: currentStats.won + 1,
+            ...(!currentGame.hardMode && {fastest: record}),
+            ...(currentGame.hardMode && {fastestHardMode: record}),
+          };
+        });
+        setModalMsg(t('gameBoard.congratulations'));
+      } else if (lost) {
+        setStats((currentStats) => ({
+          ...currentStats,
+          lost: currentStats.lost + 1,
+        }));
+        const combinationText = currentGame.combination
+          .map(getColor)
+          .join(', ');
+        setModalMsg(t('gameBoard.gameOver', {combinationText}));
+      }
+      if (won || lost) {
+        setCurrentGame((current) => ({...current, active: false}));
+      }
     }
-  }, [currentGame.combination, currentGame.guesses, currentGame.maxGuesses, t]);
-
-  useEffect(() => {
-    if (modalMsg) {
-      setShowModal(true);
-    }
-  }, [modalMsg]);
+  }, [
+    currentGame.active,
+    currentGame.combination,
+    currentGame.hardMode,
+    currentGame.started,
+    currentGame.guesses,
+    currentGame.maxGuesses,
+    setCurrentGame,
+    setStats,
+    t,
+  ]);
 
   return (
     <div className="mt-4 mb-5 w-100">
@@ -40,8 +70,8 @@ export const GameBoard: FC = () => {
         />
       ))}
       <InfoModal
-        show={showModal}
-        onClose={() => setShowModal(false)}
+        show={!!modalMsg}
+        onClose={() => setModalMsg('')}
         body={modalMsg}
       />
     </div>

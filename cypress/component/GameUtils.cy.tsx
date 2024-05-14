@@ -2,7 +2,7 @@ import {Color} from '@/types';
 import {
   createGame,
   getColor,
-  getFastestTime,
+  formatFastestTime,
   getResult,
 } from '@/utils/gameUtils';
 
@@ -48,7 +48,7 @@ describe('gameUtils/getColor', () => {
   });
 });
 
-describe('gameUtils/getFastestTime', () => {
+describe('gameUtils/formatFastestTime', () => {
   [
     {value: 0, expect: '0m 0s'},
     {value: 1, expect: '0m 1s'},
@@ -58,7 +58,7 @@ describe('gameUtils/getFastestTime', () => {
     {value: 97, expect: '1m 37s'},
   ].forEach(({value, expect}) => {
     it(`works with ${value}`, () => {
-      cy.wrap(getFastestTime(value)).should('eq', expect);
+      cy.wrap(formatFastestTime(value)).should('eq', expect);
     });
   });
 });
