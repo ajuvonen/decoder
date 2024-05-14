@@ -1,11 +1,11 @@
 version: 2.1
 orbs:
   node: circleci/node@5.2.0
-  browser-tools: circleci/browser-tools@1.4.6
+  browser-tools: circleci/browser-tools@1.4.8
 jobs:
   lint:
     docker:
-      - image: cimg/node:20.11.0
+      - image: cimg/node:20.13.1
     steps:
       - checkout
       - node/install-packages
@@ -14,7 +14,7 @@ jobs:
           command: npm run lint
   e2e-test:
     docker:
-      - image: cimg/node:20.11.0-browsers
+      - image: cimg/node:20.13.1-browsers
     steps:
       - checkout
       - node/install-packages
@@ -26,7 +26,7 @@ jobs:
           command: npm run test:e2e
   unit-test:
     docker:
-      - image: cimg/node:20.11.0-browsers
+      - image: cimg/node:20.13.1-browsers
     steps:
       - checkout
       - node/install-packages
