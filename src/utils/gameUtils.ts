@@ -1,4 +1,4 @@
-import {Color, Game, Result} from '../types';
+import {Color, Game, Result} from '@/types';
 import i18next from '@/i18n';
 
 /**

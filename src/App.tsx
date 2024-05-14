@@ -14,7 +14,7 @@ export const ReduxStats = React.lazy(() => import('@/pages/redux/Stats'));
 export const ContextHome = React.lazy(() => import('@/pages/context-api/Home'));
 export const ContextPlay = React.lazy(() => import('@/pages/context-api/Play'));
 export const ContextStats = React.lazy(
-  () => import('./pages/context-api/Stats')
+  () => import('@/pages/context-api/Stats')
 );
 
 export const App = () => {
