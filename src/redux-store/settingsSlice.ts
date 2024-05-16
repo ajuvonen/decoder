@@ -2,7 +2,7 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {loadLocalStorage} from '@/utils/localStorageUtils';
 import {ReduxSettings} from '@/types';
 
-const initialState = loadLocalStorage<ReduxSettings>('SETTINGS', {
+const initialState = loadLocalStorage<ReduxSettings>('DECODER_SETTINGS', {
   instructionShown: false,
   refreshRequired: false,
 });

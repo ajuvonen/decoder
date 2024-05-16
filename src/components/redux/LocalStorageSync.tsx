@@ -21,10 +21,10 @@ export const LocalStorageSync: FC<LocalStorageSyncProps> = ({children}) => {
   useEffect(() => {
     if (refreshRequired) {
       const localStorageGame = loadLocalStorage<Game>(
-        'CURRENT_GAME',
+        'DECODER_CURRENT_GAME',
         {} as Game
       );
-      const localStorageStats = loadLocalStorage<Stats>('STATS', {} as Stats);
+      const localStorageStats = loadLocalStorage<Stats>('DECODER_STATS', {} as Stats);
       dispatch(setCurrentGame(localStorageGame));
       dispatch(setStats(localStorageStats));
     }

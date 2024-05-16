@@ -10,7 +10,7 @@ export const currentGameState = atom<Game>({
     ...createGame(false, Date.now()),
     active: false,
   },
-  effects: [localStorageEffect('CURRENT_GAME')],
+  effects: [localStorageEffect('DECODER_CURRENT_GAME')],
 });
 
 // Atom for game stats
@@ -22,7 +22,7 @@ export const statsState = atom<Stats>({
     fastest: 0,
     fastestHardMode: 0,
   },
-  effects: [localStorageEffect('STATS')],
+  effects: [localStorageEffect('DECODER_STATS')],
 });
 
 // Atom for game settings
@@ -31,5 +31,5 @@ export const settingsState = atom<Settings>({
   default: {
     instructionShown: false,
   },
-  effects: [localStorageEffect('SETTINGS')],
+  effects: [localStorageEffect('DECODER_SETTINGS')],
 });

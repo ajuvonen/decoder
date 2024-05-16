@@ -8,7 +8,7 @@ type GuessPayload = {
   result: Result;
 };
 
-const initialState = loadLocalStorage<Game>('CURRENT_GAME', {
+const initialState = loadLocalStorage<Game>('DECODER_CURRENT_GAME', {
   ...createGame(false, Date.now()),
   active: false,
 });

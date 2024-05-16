@@ -21,19 +21,19 @@ const GameContext = createContext({} as GameContext);
 export const useGameContext = () => useContext(GameContext);
 
 export const GameProvider = ({children}: GameContextProps) => {
-  const [currentGame, setCurrentGame] = useLocalStorage<Game>('CURRENT_GAME', {
+  const [currentGame, setCurrentGame] = useLocalStorage<Game>('DECODER_CURRENT_GAME', {
     ...createGame(false, Date.now()),
     active: false,
   });
 
-  const [stats, setStats] = useLocalStorage<Stats>('STATS', {
+  const [stats, setStats] = useLocalStorage<Stats>('DECODER_STATS', {
     won: 0,
     lost: 0,
     fastest: 0,
     fastestHardMode: 0,
   });
 
-  const [settings, setSettings] = useLocalStorage<Settings>('SETTINGS', {
+  const [settings, setSettings] = useLocalStorage<Settings>('DECODER_SETTINGS', {
     instructionShown: false,
   });
 
