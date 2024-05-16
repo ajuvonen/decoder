@@ -81,6 +81,3 @@ Cypress.Commands.add('reduxMount', (component, options) => {
     options
   );
 });
-
-process = process || {env: {}};
-process.env = process.env || {};
