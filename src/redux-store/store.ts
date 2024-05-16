@@ -21,7 +21,7 @@ export const getNewStore = () => {
       newStore.getState,
       'currentGame',
       deepEqual
-    )((newValue) => saveLocalStorage('CURRENT_GAME', newValue))
+    )((newValue) => saveLocalStorage('DECODER_CURRENT_GAME', newValue))
   );
 
   newStore.subscribe(
@@ -29,7 +29,7 @@ export const getNewStore = () => {
       newStore.getState,
       'stats',
       deepEqual
-    )((newValue) => saveLocalStorage('STATS', newValue))
+    )((newValue) => saveLocalStorage('DECODER_STATS', newValue))
   );
 
   // Omit Redux-only settings
@@ -39,7 +39,7 @@ export const getNewStore = () => {
       'settings',
       deepEqual
     )((newValue) =>
-      saveLocalStorage('SETTINGS', omit(['refreshRequired'], newValue))
+      saveLocalStorage('DECODER_SETTINGS', omit(['refreshRequired'], newValue))
     )
   );
 

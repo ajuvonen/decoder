@@ -8,7 +8,7 @@ type FastestTimePayload = {
   hardMode: boolean;
 };
 
-const initialState = loadLocalStorage<Stats>('STATS', {
+const initialState = loadLocalStorage<Stats>('DECODER_STATS', {
   won: 0,
   lost: 0,
   fastest: 0,
