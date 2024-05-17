@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@fontsource/tektur": "^5.0.5",
-    "@reduxjs/toolkit": "^2.2.4",
+    "@reduxjs/toolkit": "^2.2.5",
     "bootstrap": "^5.3.3",
     "classnames": "^2.5.1",
     "deep-equal": "^2.2.3",
@@ -28,11 +28,11 @@
     "react-router-dom": "^6.23.1",
     "recoil": "^0.7.7",
     "redux-watch": "^1.2.0",
-    "styled-components": "^5.3.11"
+    "styled-components": "^6.1.11"
   },
   "devDependencies": {
     "@types/deep-equal": "^1.0.4",
-    "@types/node": "^20.12.11",
+    "@types/node": "^20.12.12",
     "@types/ramda": "^0.30.0",
     "@types/react": "^18.3.2",
     "@types/react-dom": "^18.3.0",
@@ -42,7 +42,7 @@
     "@typescript-eslint/parser": "^7.9.0",
     "@vitejs/plugin-react": "^4.2.1",
     "cypress": "^13.9.0",
-    "eslint": "^8.56.0",
+    "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.2",
     "start-server-and-test": "^2.0.3",
     "typescript": "^5.4.5",
