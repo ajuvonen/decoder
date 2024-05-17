@@ -9,10 +9,6 @@ type GuessResultProps = {
   maxGuesses: number;
 };
 
-type ResultBlockProps = {
-  info: string;
-};
-
 const rotate = keyframes`
   from {
     transform: rotate(-6deg);
@@ -34,18 +30,8 @@ const ResultBlock = styled.div`
   border: 1px solid #2c3e50;
   border-radius: 6px;
   margin-top: 1rem;
-
-  :before {
-    position: absolute;
-    content: '';
-    border: 0.5px solid #2c3e50;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-  }
-
-  :after {
-    content: '${(props: ResultBlockProps) => props.info}';
+  
+  > span:first-child {
     font-size: 1rem;
     position: absolute;
     top: 0;
@@ -70,10 +56,10 @@ export const GuessResult: FC<GuessResultProps> = ({guess, maxGuesses}) => {
   const {t} = useTranslation();
   return (
     <ResultBlock
-      info={t('guessResult.info', {round: guess.round, maxGuesses})}
       className={classNames({win: guess.result.correct === 4})}
       data-test="guess-result"
     >
+      <span data-test="guess-result-round">{t('guessResult.info', {round: guess.round, maxGuesses})}</span>
       <span
         style={{color: 'green'}}
         title={t('guessResult.correct')}

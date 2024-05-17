@@ -15,12 +15,8 @@ describe('<GuessResult />', () => {
         maxGuesses={10}
       />
     )
-      .window().then((win) => {
-        cy.getByTestId('guess-result').then((element) => {
-          const after = win.getComputedStyle(element[0], '::after');
-          cy.wrap(after.getPropertyValue('content')).should('eq', '"Round 1 / 10"');
-        })
-      })
+      .getByTestId('guess-result-round')
+      .should('have.text', 'Round 1 / 10')
       .getByTestId('guess-result-correct')
       .should('have.text', 3)
       .getByTestId('guess-result-semicorrect')
