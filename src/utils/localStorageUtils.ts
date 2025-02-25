@@ -12,6 +12,7 @@ export const loadLocalStorage = <T>(key: string, initialValue: T): T => {
     }
 
     return initialValue;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (e) {
     return initialValue;
   }
